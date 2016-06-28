@@ -7,15 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if user_signed_in? || pickup_signed_in? %>
-  <%= link_to "Sign out", destroy_user_session_path, method: :delete %><br>
-<% end %>
 
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a href="#" class="brand">4PL</a>
+        <ul class="nav">
+          <li><%= link_to "About", root_path %></li>
+          <li><%= link_to "Contact", root_path %></li>
+          <% if user_signed_in? || pickup_signed_in? %>
+            <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Login", account_path %></li>
+            <li><%= link_to "Sign up", account_new_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-    <%= yield %>
-
+      <div class="container">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <%= yield %>
+      </div>
 </body>
 </html>
