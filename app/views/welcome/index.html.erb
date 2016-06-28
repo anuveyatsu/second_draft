@@ -1,0 +1,7 @@
+<h1>Welcome#index</h1>
+<p>Find me in app/views/welcome/index.html.erb</p>
+<% if user_signed_in? || pickup_signed_in? %>
+<% else %>
+  <%= link_to "Sign in", account_path %><br>
+  <%= link_to "Sign up", account_new_path %><br>
+<% end %>
