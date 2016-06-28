@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   devise_for :pickups
   get 'account/index', as: 'account'
   get 'account/new', as: 'account_new'
-  get 'account/seller'
-  get 'account/pickupstore'
+  get 'account/seller', as: 'account_seller'
+  get 'account/pickupstore', as: 'account_pickupstore'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
