@@ -28,9 +28,11 @@
               <li><a href="#pricing">PRICING</a></li>
               <li class="blockquote-reverse"><a href="#contact">CONTACT</a></li>
               <% if user_signed_in? %>
-                <li><a href="/users/sign_out">LOGOUT</a></li>
+                <li><a href="/account/seller">ACCOUNT</a></li>
+                <li><%= link_to 'LOGOUT', destroy_user_session_path, :method => :delete %></li>
               <% elsif pickup_signed_in? %>
-                <li><a href="/pickups/sign_out">LOGOUT</a></li>
+                <li><a href="/account/pickupstore">ACCOUNT</a></li>
+                <li><%= link_to 'LOGOUT', destroy_pickup_session_path, :method => :delete %></li>
               <% else %>
                 <li><a href="/account/index" class="qwer">LOGIN</a></li>
                 <li><a href="/account/new" class="qwer">SIGN UP</a></li>
