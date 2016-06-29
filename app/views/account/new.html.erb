@@ -1,2 +1,12 @@
-<%= link_to "Sign up as seller", new_user_registration_path %><br>
-<%= link_to "Sign up as pickupstore", new_pickup_registration_path %><br>
+<div style="padding:40px" class="text-center">
+  <h1 class="text-primary">Register as</h1>
+</div>
+
+<div class="btn-group btn-group-justified" role="group" aria-label="..." style="padding:20px">
+  <div class="btn-group" role="group">
+    <%= link_to "A seller", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+  </div>
+  <div class="btn-group" role="group">
+    <%= link_to "A pickupstore", new_pickup_registration_path, class: "btn btn-danger btn-lg" %>
+  </div>
+</div>
