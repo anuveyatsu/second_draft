@@ -26,27 +26,38 @@
               <li><a href="#services">SERVICES</a></li>
               <li><a href="#portfolio">PORTFOLIO</a></li>
               <li><a href="#pricing">PRICING</a></li>
-              <li class="blockquote-reverse"><a href="#contact">CONTACT</a></li>
+              <li><a href="#contact">CONTACT</a></li>
               <% if user_signed_in? %>
-                <li><a href="/account/seller">ACCOUNT</a></li>
-                <li><%= link_to 'LOGOUT', destroy_user_session_path, :method => :delete %></li>
+                <li><a href="/account/seller"><span class="glyphicon glyphicon-user"></span> ACCOUNT</a></li>
+                <li><%= link_to 'LOGOUT', destroy_user_session_path, :method => :delete %>
+                </li>
               <% elsif pickup_signed_in? %>
-                <li><a href="/account/pickupstore">ACCOUNT</a></li>
+                <li><a href="/account/pickupstore"><span class="glyphicon glyphicon-user"></span> ACCOUNT</a></li>
                 <li><%= link_to 'LOGOUT', destroy_pickup_session_path, :method => :delete %></li>
               <% else %>
-                <li><a href="/account/index" class="qwer">LOGIN</a></li>
-                <li><a href="/account/new" class="qwer">SIGN UP</a></li>
+                <li><a href="/login" class="qwer"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
+                <li><a href="/register" class="qwer">SIGN UP</a></li>
               <% end %>
             </ul>
           </div>
         </div>
     </nav>
 
-
+    <% flash.each do |type, message| %>
+      <div class="alert <%= flash_class type %>" role="alert">
+        <button class="close" data-dismiss="alert">x</button>
+        <%= message %>
+      </div>
+    <% end %>
 
     <%= yield %>
 
-
+    <footer class="container-fluid text-center">
+      <a href="#myPage" title="To Top">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+      </a>
+      <p>Кітап - алтын қазына.</p>
+    </footer>
 
       <script>
         $(document).ready(function(){
