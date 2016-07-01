@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
+
   get 'account/index', as: 'account'
   get 'account/new', as: 'account_new'
   get 'account/seller', as: 'account_seller'
@@ -7,6 +7,12 @@ Rails.application.routes.draw do
 
   devise_for :users
   devise_for :pickups
+
+  root 'welcome#index'
+
+  get 'register', to: 'account#new', as: :register
+  get 'login', to: 'account#index', as: :login
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
