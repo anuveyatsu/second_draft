@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  b_legal_name: MyString
+  b_legal_BIN: MyString
+  b_legal_address: MyString
+  b_legal_bank_name: MyString
+  b_legal_bank_BIN: MyString
+  b_legal_SWIFT: MyString
+  b_legal_bank_account: MyString
+  b_legal_CEO: MyString
+  buyer_id: 
+
+two:
+  b_legal_name: MyString
+  b_legal_BIN: MyString
+  b_legal_address: MyString
+  b_legal_bank_name: MyString
+  b_legal_bank_BIN: MyString
+  b_legal_SWIFT: MyString
+  b_legal_bank_account: MyString
+  b_legal_CEO: MyString
+  buyer_id: 

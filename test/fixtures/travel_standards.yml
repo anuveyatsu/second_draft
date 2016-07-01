@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  route-type: MyString
+  order_id: 
+  courier_id: 
+
+two:
+  route-type: MyString
+  order_id: 
+  courier_id: 

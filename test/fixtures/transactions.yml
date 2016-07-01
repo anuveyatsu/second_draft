@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  transaction_date: MyString
+  transaction_amount: MyString
+  transaction_buyers_email: MyString
+  seller_id: 
+
+two:
+  transaction_date: MyString
+  transaction_amount: MyString
+  transaction_buyers_email: MyString
+  seller_id: 

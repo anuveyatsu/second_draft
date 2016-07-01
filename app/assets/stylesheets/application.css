@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+ @import 'modules/variables';
  body {
       padding-top: 45px;
       font: 400 15px Lato, sans-serif;
@@ -51,7 +52,7 @@
       font-size: 50px;
   }
   .logo {
-      color: #f4511e;
+      color:  #f4511e;
       font-size: 200px;
   }
   .thumbnail {
@@ -66,7 +67,7 @@
   }
   .carousel-control.right, .carousel-control.left {
       background-image: none;
-      color: #f4511e;
+      color:  #f4511e;
   }
   .carousel-indicators li {
       border-color: #f4511e;

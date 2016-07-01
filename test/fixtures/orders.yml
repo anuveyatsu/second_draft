@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  delivery_option: MyString
+  transport_provider: MyString
+  delivery_status: MyString
+  parcel_size_L: MyString
+  parcel_size_W: MyString
+  parcel_size_H: MyString
+  parcel_weight: MyString
+  parcel_content: MyString
+  seller_id: 
+  buyer_id: 
+  store_id: 
+  warehouse_id: 
+
+two:
+  delivery_option: MyString
+  transport_provider: MyString
+  delivery_status: MyString
+  parcel_size_L: MyString
+  parcel_size_W: MyString
+  parcel_size_H: MyString
+  parcel_weight: MyString
+  parcel_content: MyString
+  seller_id: 
+  buyer_id: 
+  store_id: 
+  warehouse_id: 

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  warehouse_name: MyString
+  warehouse_location: MyString
+  warehouse_manager: MyString
+  warehouse_phone: MyString
+  warehouse_email: MyString
+
+two:
+  warehouse_name: MyString
+  warehouse_location: MyString
+  warehouse_manager: MyString
+  warehouse_phone: MyString
+  warehouse_email: MyString
