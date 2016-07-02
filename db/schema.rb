@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160701060806) do
+ActiveRecord::Schema.define(version: 20160702150202) do
 
   create_table "buyer_legal_details", force: :cascade do |t|
     t.string   "b_legal_name"
@@ -79,14 +79,16 @@ ActiveRecord::Schema.define(version: 20160701060806) do
     t.string   "parcel_weight"
     t.string   "parcel_content"
     t.integer  "seller_id"
-    t.integer  "buyer_id"
     t.integer  "store_id"
     t.integer  "warehouse_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "from"
+    t.string   "buyer_name"
+    t.string   "buyer_email"
+    t.string   "buyer_phone"
   end
 
-  add_index "orders", ["buyer_id"], name: "index_orders_on_buyer_id"
   add_index "orders", ["seller_id"], name: "index_orders_on_seller_id"
   add_index "orders", ["store_id"], name: "index_orders_on_store_id"
   add_index "orders", ["warehouse_id"], name: "index_orders_on_warehouse_id"
@@ -129,16 +131,28 @@ ActiveRecord::Schema.define(version: 20160701060806) do
   add_index "seller_legal_details", ["seller_id"], name: "index_seller_legal_details_on_seller_id"
 
   create_table "sellers", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "seller_name"
     t.string   "seller_rep_name"
     t.string   "seller_address1"
     t.string   "seller_address2"
     t.string   "seller_address3"
     t.string   "seller_phone"
-    t.string   "seller_email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
   end
+
+  add_index "sellers", ["email"], name: "index_sellers_on_email", unique: true
+  add_index "sellers", ["reset_password_token"], name: "index_sellers_on_reset_password_token", unique: true
 
   create_table "store_legal_details", force: :cascade do |t|
     t.string   "st_legal_name"

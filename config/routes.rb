@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'account/seller', as: 'account_seller'
   get 'account/pickupstore', as: 'account_pickupstore'
 
-  devise_for :users
+  devise_for :sellers
   devise_for :pickups
 
   root 'welcome#index'

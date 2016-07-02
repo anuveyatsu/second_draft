@@ -10,7 +10,6 @@ one:
   parcel_weight: MyString
   parcel_content: MyString
   seller_id: 
-  buyer_id: 
   store_id: 
   warehouse_id: 
 
@@ -24,6 +23,5 @@ two:
   parcel_weight: MyString
   parcel_content: MyString
   seller_id: 
-  buyer_id: 
   store_id: 
   warehouse_id: 

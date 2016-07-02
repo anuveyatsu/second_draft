@@ -1,0 +1,22 @@
+<div class="mainDiv">
+  <div class="container text-center well" style="padding:40px">
+    <h1 class="text-primary">Log in as a seller</h1>
+
+  <div class="container-fluid" style="max-width:240px">
+    <%= simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
+      <%= f.input :email %>
+
+      <%= f.input :password %>
+
+      <% if devise_mapping.rememberable? -%>
+          <%= f.input :remember_me, as: :boolean %>
+      <% end %>
+
+        <%= f.button :submit, "Log in", class: "btn btn-primary" %>
+
+    <% end %>
+
+    <%= render "sellers/shared/links" %>
+  </div>
+  </div>
+</div>

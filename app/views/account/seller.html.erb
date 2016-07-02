@@ -1,17 +1,74 @@
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p>Welcome <a href="">'first_name'</a></p>
+      <p>Welcome <a href=""><%= current_seller.seller_rep_name %></a></p>
       <p>Your balance: __</p>
       <p>Orders last 7 days: __</p>
       <p>Orders last 30 days: __</p>
       <p>Avergage delivery time: __</p>
       <a href"#">Edit your account</a>
     </div>
-    <div class="col-sm-8 text-center">
+    <div class="col-sm-8 text-center inline">
       <h1>Add a new order:</h1>
       <h6>Please, fill in all fields</h6>
+      <%= simple_form_for :order do |f| %>
+        <div class="row" style="padding-bottom:40px">
+          <div class="col-sm-6">
+            <%= f.input :from, label: 'From:',
+                :collection => [current_seller.seller_address1,
+                                current_seller.seller_address2,
+                                current_seller.seller_address3],
+                selected: current_seller.seller_address1,
+                :wrapper_html => { :style => 'display: inline' } %>
+          </div>
+          <div class="col-sm-6">
+            <%= f.input :to, label: 'To:',
+                :collection => Pickup.all.map {|pickup| ["#{pickup.company} email: #{pickup.email}"]},
+                selected: Pickup.first.company,
+                :wrapper_html => { :style => 'display: inline' } %>
+          </div>
+        </div>
 
+        <div class="row">
+          <div class="col-sm-4">
+            <%= f.input :buyer_name, placeholder: "Customer's name", label: false %>
+          </div>
+          <div class="col-sm-4">
+            <%= f.input :buyer_phone, placeholder: "Customer's phone", label: false %>
+          </div>
+          <div class="col-sm-4">
+            <%= f.input :buyer_email, placeholder: "Customer's email", label: false %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 text-left">
+            <%= f.input :delivery_option, as: :radio_buttons,
+                :collection => ['Standard', 'Premium'] %></div>
+          <div class="col-sm-6 text-left">
+            <%= f.input :transport_provider, as: :radio_buttons,
+                :collection => ['General Logistics', 'I will deliver by myself'] %></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <%= f.input :parcel_size_L, placeholder: "Length", label: false %>
+          </div>
+          <div class="col-sm-4">
+            <%= f.input :parcel_size_W, placeholder: "Width", label: false %>
+          </div>
+          <div class="col-sm-4">
+            <%= f.input :parcel_size_H, placeholder: "Height", label: false %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <%= f.input :parcel_weight, placeholder: "Weight", label: false %>
+          </div>
+          <div class="col-sm-6">
+            <%= f.input :parcel_content, placeholder: "Content", label: false %>
+          </div>
+        </div>
+        <%= f.button :submit, class: "btn btn-primary" %>
+      <% end %>
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">

@@ -10,7 +10,6 @@ class CreateOrders < ActiveRecord::Migration
       t.string :parcel_weight
       t.string :parcel_content
       t.references :seller, index: true, foreign_key: true
-      t.references :buyer, index: true, foreign_key: true
       t.references :store, index: true, foreign_key: true
       t.references :warehouse, index: true, foreign_key: true
 
