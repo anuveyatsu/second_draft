@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
- @import 'modules/variables';
+
  body {
       padding-top: 45px;
       font: 400 15px Lato, sans-serif;
@@ -151,9 +151,12 @@
       border-color: transparent;
       color: #fff !important;
   }
+  footer {
+    height: 70px;
+  }
   footer .glyphicon {
       font-size: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 5px;
       color: #f4511e;
   }
   .slideanim {visibility:hidden;}
