@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160702150202) do
+ActiveRecord::Schema.define(version: 20160704052335) do
 
   create_table "buyer_legal_details", force: :cascade do |t|
     t.string   "b_legal_name"
@@ -70,6 +70,10 @@ ActiveRecord::Schema.define(version: 20160702150202) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.string   "from"
+    t.string   "buyer_name"
+    t.string   "buyer_phone"
+    t.string   "buyer_email"
     t.string   "delivery_option"
     t.string   "transport_provider"
     t.string   "delivery_status"
@@ -83,10 +87,6 @@ ActiveRecord::Schema.define(version: 20160702150202) do
     t.integer  "warehouse_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.string   "from"
-    t.string   "buyer_name"
-    t.string   "buyer_email"
-    t.string   "buyer_phone"
   end
 
   add_index "orders", ["seller_id"], name: "index_orders_on_seller_id"

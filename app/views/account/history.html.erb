@@ -1,0 +1,29 @@
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-2 sidenav text-left">
+      <p>Welcome <a href=""><%= current_seller.seller_rep_name %></a></p>
+      <p>Company name: <a href=""><%= current_seller.seller_name %></a></p>
+      <p>Orders last 7 days: __</p>
+      <p>Orders last 30 days: __</p>
+      <p>Average delivery time: __</p>
+      <button class="btn btn-primary">Edit your account</button>
+    </div>
+    <div class="col-sm-8 text-center inline">
+      <ul class="nav nav-pills nav-justified" style="padding:20px">
+        <li><%= link_to "Active Orders", account_seller_path %></li>
+        <li><%= link_to "New Order", account_create_path %></li>
+        <li class="active"><%= link_to "History", account_history_path %></li>
+      </ul>
+      <h1>Full parcel history:</h1>
+      <%= render :file => 'orders/index' %>
+    </div>
+    <div class="col-sm-2 sidenav">
+      <div class="well">
+        <p>Notifications:</p>
+      </div>
+      <div class="well">
+        <p>News:</p>
+      </div>
+    </div>
+  </div>
+</div>

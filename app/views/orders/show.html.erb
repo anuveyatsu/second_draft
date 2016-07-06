@@ -1,0 +1,77 @@
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+           <strong>From:</strong>
+           <%= order.from %>
+          </p>
+
+          <p>
+           <strong>Delivery option:</strong>
+           <%= order.delivery_option %>
+          </p>
+
+          <p>
+           <strong>Transport provider:</strong>
+           <%= order.transport_provider %>
+          </p>
+
+          <p>
+           <strong>Delivery status:</strong>
+           <%= order.delivery_status %>
+          </p>
+
+          <p>
+           <strong>Parcel size l:</strong>
+           <%= order.parcel_size_L %>
+          </p>
+
+          <p>
+           <strong>Parcel size w:</strong>
+           <%= order.parcel_size_W %>
+          </p>
+
+          <p>
+           <strong>Parcel size h:</strong>
+           <%= order.parcel_size_H %>
+          </p>
+
+          <p>
+           <strong>Parcel weight:</strong>
+           <%= order.parcel_weight %>
+          </p>
+
+          <p>
+           <strong>Parcel content:</strong>
+           <%= order.parcel_content %>
+          </p>
+
+          <p>
+           <strong>Seller:</strong>
+           <%= order.seller %>
+          </p>
+
+          <p>
+           <strong>Store:</strong>
+           <%= order.store %>
+          </p>
+
+          <p>
+          <strong>Warehouse:</strong>
+           <%= order.warehouse %>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>

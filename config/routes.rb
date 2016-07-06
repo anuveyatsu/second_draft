@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :orders
   get 'account/index', as: 'account'
   get 'account/new', as: 'account_new'
   get 'account/seller', as: 'account_seller'
   get 'account/pickupstore', as: 'account_pickupstore'
+  get 'account/history', as: 'account_history'
+  get 'account/add', as: 'account_create'
 
   devise_for :sellers
   devise_for :pickups

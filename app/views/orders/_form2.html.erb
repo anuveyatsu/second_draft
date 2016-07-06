@@ -1,0 +1,60 @@
+<%= simple_form_for(Order.edit) do |f| %>
+    <%= f.error_notification %>
+    <div class="row" style="padding-bottom:40px">
+      <div class="col-sm-6">
+        <%= f.input :from, label: 'From:',
+            :collection => [current_seller.seller_address1,
+                            current_seller.seller_address2,
+                            current_seller.seller_address3],
+            selected: current_seller.seller_address1,
+            :wrapper_html => { :style => 'display: inline' } %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.input :store_id, label: 'To:',
+            :collection => Pickup.all.map {|pickup| ["#{pickup.company} email: #{pickup.email}", pickup.id]},
+            selected: Pickup.first.company,
+            :wrapper_html => { :style => 'display: inline' } %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <%= f.input :buyer_name, placeholder: "Customer's name", label: false %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :buyer_phone, placeholder: "Customer's phone", label: false %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :buyer_email, as: :email,
+        placeholder: "Customer's email", label: false %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 text-left">
+        <%= f.input :delivery_option, as: :radio_buttons,
+            :collection => ['Standard', 'Premium'] %></div>
+      <div class="col-sm-6 text-left">
+        <%= f.input :transport_provider, as: :radio_buttons,
+            :collection => ['General Logistics', 'I will deliver by myself'] %></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= f.input :parcel_size_L, placeholder: "Length", label: false %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :parcel_size_W, placeholder: "Width", label: false %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :parcel_size_H, placeholder: "Height", label: false %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.input :parcel_weight, placeholder: "Weight", label: false %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.input :parcel_content, placeholder: "Content", label: false %>
+      </div>
+    </div>
+    <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>

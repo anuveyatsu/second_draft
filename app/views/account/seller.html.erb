@@ -1,81 +1,149 @@
 <div class="container-fluid text-center">
   <div class="row content">
-    <div class="col-sm-2 sidenav">
+    <div class="col-sm-2 sidenav text-left">
       <p>Welcome <a href=""><%= current_seller.seller_rep_name %></a></p>
-      <p>Your balance: __</p>
+      <p>Company name: <a href=""><%= current_seller.seller_name %></a></p>
       <p>Orders last 7 days: __</p>
       <p>Orders last 30 days: __</p>
-      <p>Avergage delivery time: __</p>
-      <a href"#">Edit your account</a>
+      <p>Average delivery time: __</p>
+      <button class="btn btn-primary">Edit your account</button>
     </div>
     <div class="col-sm-8 text-center inline">
-      <h1>Add a new order:</h1>
-      <h6>Please, fill in all fields</h6>
-      <%= simple_form_for :order do |f| %>
-        <div class="row" style="padding-bottom:40px">
-          <div class="col-sm-6">
-            <%= f.input :from, label: 'From:',
-                :collection => [current_seller.seller_address1,
-                                current_seller.seller_address2,
-                                current_seller.seller_address3],
-                selected: current_seller.seller_address1,
-                :wrapper_html => { :style => 'display: inline' } %>
-          </div>
-          <div class="col-sm-6">
-            <%= f.input :to, label: 'To:',
-                :collection => Pickup.all.map {|pickup| ["#{pickup.company} email: #{pickup.email}"]},
-                selected: Pickup.first.company,
-                :wrapper_html => { :style => 'display: inline' } %>
-          </div>
-        </div>
+      <ul class="nav nav-pills nav-justified" style="padding:20px">
+        <li class="active"><%= link_to "Active Orders", account_seller_path %></li>
+        <li><%= link_to "New Order", account_create_path %></li>
+        <li><%= link_to "History", account_history_path %></li>
+      </ul>
+      <h1>Active orders:</h1>
+      <table class="table table-striped table-condensed table-responsive table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center">From</th>
 
-        <div class="row">
-          <div class="col-sm-4">
-            <%= f.input :buyer_name, placeholder: "Customer's name", label: false %>
-          </div>
-          <div class="col-sm-4">
-            <%= f.input :buyer_phone, placeholder: "Customer's phone", label: false %>
-          </div>
-          <div class="col-sm-4">
-            <%= f.input :buyer_email, placeholder: "Customer's email", label: false %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6 text-left">
-            <%= f.input :delivery_option, as: :radio_buttons,
-                :collection => ['Standard', 'Premium'] %></div>
-          <div class="col-sm-6 text-left">
-            <%= f.input :transport_provider, as: :radio_buttons,
-                :collection => ['General Logistics', 'I will deliver by myself'] %></div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4">
-            <%= f.input :parcel_size_L, placeholder: "Length", label: false %>
-          </div>
-          <div class="col-sm-4">
-            <%= f.input :parcel_size_W, placeholder: "Width", label: false %>
-          </div>
-          <div class="col-sm-4">
-            <%= f.input :parcel_size_H, placeholder: "Height", label: false %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <%= f.input :parcel_weight, placeholder: "Weight", label: false %>
-          </div>
-          <div class="col-sm-6">
-            <%= f.input :parcel_content, placeholder: "Content", label: false %>
-          </div>
-        </div>
-        <%= f.button :submit, class: "btn btn-primary" %>
-      <% end %>
+            <th class="text-center">Parcel's content</th>
+            <th colspan="3" class="text-center">Modify</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% Order.all.each do |order| %>
+            <% if order.delivery_status != 'completed' %>
+              <tr>
+                <td><%= order.from %></td>
+
+                <td><%= order.parcel_content %></td>
+                <td>
+                  <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                    <span class='glyphicon glyphicon-search'></span>
+                  </button>
+                  <div class="modal fade" id="myModal" role="dialog" style="padding:30px">
+                      <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Full shipment details</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                             <strong>From:</strong>
+                             <%= order.from %>
+                            </p>
+
+                            <p>
+                             <strong>Delivery option:</strong>
+                             <%= order.delivery_option %>
+                            </p>
+
+                            <p>
+                             <strong>Transport provider:</strong>
+                             <%= order.transport_provider %>
+                            </p>
+
+                            <p>
+                             <strong>Delivery status:</strong>
+                             <%= order.delivery_status %>
+                            </p>
+
+                            <p>
+                             <strong>Parcel size l:</strong>
+                             <%= order.parcel_size_L %>
+                            </p>
+
+                            <p>
+                             <strong>Parcel size w:</strong>
+                             <%= order.parcel_size_W %>
+                            </p>
+
+                            <p>
+                             <strong>Parcel size h:</strong>
+                             <%= order.parcel_size_H %>
+                            </p>
+
+                            <p>
+                             <strong>Parcel weight:</strong>
+                             <%= order.parcel_weight %>
+                            </p>
+
+                            <p>
+                             <strong>Parcel content:</strong>
+                             <%= order.parcel_content %>
+                            </p>
+
+                            <p>
+                             <strong>Seller:</strong>
+                             <%= order.seller %>
+                            </p>
+
+                            <p>
+                             <strong>Store:</strong>
+                             <%= order.store %>
+                            </p>
+
+                            <p>
+                            <strong>Warehouse:</strong>
+                             <%= order.warehouse %>
+                            </p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                </td>
+                <td>
+
+                    <%= link_to edit_order_path(order) do %>
+                      <button class="btn btn-warning">
+                        <span class='glyphicon glyphicon-pencil'></span>
+                      </button>
+                    <% end %>
+
+                </td>
+                <td>
+
+                    <%= link_to order, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                      <button class="btn">
+                        <span class='glyphicon glyphicon-trash'></span>
+                      </button>
+                    <% end %>
+
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
-        <p>Active orders:</p>
+        <p>Notifications:</p>
       </div>
       <div class="well">
-        <p>History:</p>
+        <p>News:</p>
       </div>
     </div>
   </div>

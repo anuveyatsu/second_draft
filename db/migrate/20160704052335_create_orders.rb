@@ -1,6 +1,10 @@
 class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
+      t.string :from
+      t.string :buyer_name
+      t.string :buyer_phone
+      t.string :buyer_email
       t.string :delivery_option
       t.string :transport_provider
       t.string :delivery_status
