@@ -9,7 +9,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-
+  <% flash.each do |type, message| %>
+    <p class="alert <%= flash_class type %>" role="alert">
+      <button class="close" data-dismiss="alert">x</button>
+      <%= message %>
+    </p>
+  <% end %>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
           <div class="navbar-header">
@@ -42,13 +47,6 @@
           </div>
         </div>
     </nav>
-
-    <% flash.each do |type, message| %>
-      <div class="alert <%= flash_class type %>" role="alert">
-        <button class="close" data-dismiss="alert">x</button>
-        <%= message %>
-      </div>
-    <% end %>
 
     <%= yield %>
 

@@ -1,7 +1,17 @@
 // Place all the styles related to the account controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-    
+    #step2, #step3, #step4, #step5, #createButton {
+      display: none;
+    }
+    #progress {
+      width: 80%;
+      margin-left: 10%;
+    }
+    #form {
+      width: 80%;
+      margin-left: 10%;
+    }
     .mainDiv {
       height: calc(100vh - 115px);
       padding:50px;
