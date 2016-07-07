@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% Order.all.each do |order| %>
+    <% @orders.each do |order| %>
       <tr>
         <td><%= order.from %></td>
         <td><%= order.store_id %></td>

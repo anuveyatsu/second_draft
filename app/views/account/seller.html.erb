@@ -26,7 +26,7 @@
         </thead>
 
         <tbody>
-          <% Order.all.each do |order| %>
+          <% @orders.each do |order| %>
             <% if order.delivery_status != 'completed' %>
               <tr>
                 <td><%= order.from %></td>
