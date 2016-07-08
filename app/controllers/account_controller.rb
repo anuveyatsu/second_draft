@@ -33,6 +33,22 @@ class AccountController < OrdersController
       end
     end
   end
+
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @order.update(order_params)
+        format.html { redirect_to account_path, notice: 'Order was successfully updated.' }
+        format.json { render :show, status: :ok, location: @order }
+      else
+        format.html { render :edit }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def seller
     @orders = current_seller.orders.all
   end

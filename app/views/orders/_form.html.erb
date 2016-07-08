@@ -2,15 +2,26 @@
 <%= simple_form_for (@order) do |f| %>
     <%= f.error_notification %>
     <div class="row" style="padding-bottom:40px" id="step1">
-
-        <%= f.input :from, label: 'Choose your drop-off store:',
-            :collection => Pickup.all.map {|pickup| ["#{pickup.company} email: #{pickup.email}", pickup.id]},
-            selected: Pickup.first.company %>
+      <h3>Choose your drop-off store:</h3>
+      <div class="well-sm col-sm-4 text-left" style="max-width:25%">
+        <%= f.input :from, label: false,
+            :collection => Pickup.all.map {|pickup| ["#{pickup.company}", pickup.id]},
+            as: :radio_buttons %>
+      </div>
+      <div class="well-sm col-sm-9">
+        <div id="map1" style='width:100%; height: 290px'></div>
+      </div>
     </div>
     <div class="row" style="padding-bottom:40px" id="step2">
-        <%= f.input :store_id, label: 'Choose pick-up store:',
-            :collection => Pickup.all.map {|pickup| ["#{pickup.company} email: #{pickup.email}", pickup.id]},
-            selected: Pickup.first.company %>
+      <h3>Choose pick-up store:</h3>
+      <div class="well-sm col-sm-4 text-left" style="max-width:25%">
+        <%= f.input :store_id, label: false,
+            :collection => Pickup.all.map {|pickup| ["#{pickup.company}", pickup.id]},
+            as: :radio_buttons %>
+      </div>
+      <div class="well-sm col-sm-9">
+        <div id="map2" style='width:100%; height: 290px'></div>
+      </div>
     </div>
 
     <div class="row" style="padding-bottom:40px" id="step3">

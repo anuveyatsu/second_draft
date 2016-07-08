@@ -14,7 +14,7 @@
         <li class="active"><%= link_to "New Order", account_create_path %></li>
         <li><%= link_to "History", account_history_path %></li>
       </ul>
-      <h1>Add a new order:</h1>
+
       <h6>Please, fill in all fields</h6><br />
       <div class="col-sm-8" id="progress">
         <div class="progress">
@@ -97,4 +97,103 @@
       step-=1;
     }
   }
+  /*
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map1'}}, function(){
+    markers = handler.addMarkers([
+      {
+        "lat": 43.233539,
+        "lng": 76.957034,
+        "picture": {
+          "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+          "width":  36,
+          "height": 36
+        },
+        "infowindow": "Dostyk Plaza"
+      },
+      {
+        "lat": 43.202411,
+        "lng": 76.892582,
+        "picture": {
+          "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+          "width":  36,
+          "height": 36
+        },
+        "infowindow": "Mega Center"
+      },
+      {
+        "lat": 43.227796,
+        "lng": 76.960678,
+        "picture": {
+          "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+          "width":  36,
+          "height": 36
+        },
+        "infowindow": "Royal Petrol"
+      },
+      {
+        "lat": 43.248880,
+        "lng": 76.943008,
+        "picture": {
+          "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+          "width":  36,
+          "height": 36
+        },
+        "infowindow": "Super Market"
+      },
+      {
+        "lat": 43.217882,
+        "lng": 76.842853,
+        "picture": {
+          "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+          "width":  36,
+          "height": 36
+        },
+        "infowindow": "Magnum"
+      },
+      {
+        "lat": 43.234105,
+        "lng": 76.889586,
+        "picture": {
+          "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+          "width":  36,
+          "height": 36
+        },
+        "infowindow": "Bekker"
+      },
+      {
+        "lat": 43.240487,
+        "lng": 76.924873,
+        "picture": {
+          "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+          "width":  36,
+          "height": 36
+        },
+        "infowindow": "Promenade"
+      }
+    ]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+  */
+  var map1, map2;
+  function initMap() {
+    var mapOptions = {
+      center: {lat: 43.233539, lng: 76.957034},
+      zoom: 11,
+      disableDefaultUI: true,
+
+    }
+    map1 = new google.maps.Map(document.getElementById('map1'), mapOptions);
+    map2 = new google.maps.Map(document.getElementById('map2'), mapOptions);
+    var marker = new google.maps.Marker({
+      position: {lat: 43.233539, lng: 76.957034},
+      map: map1,
+      title: 'Dostyk Plaza'
+    });
+  }
+
+</script>
+<script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGrEiG-wyu70OQ9Cr6aZRjCMHAfgfxCso&callback=initMap">
 </script>

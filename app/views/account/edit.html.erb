@@ -9,13 +9,10 @@
       <button class="btn btn-primary">Edit your account</button>
     </div>
     <div class="col-sm-8 text-center inline">
-      <ul class="nav nav-pills nav-justified" style="padding:20px">
-        <li><%= link_to "Active Orders", account_seller_path %></li>
-        <li><%= link_to "New Order", account_create_path %></li>
-        <li class="active"><%= link_to "History", account_history_path %></li>
-      </ul>
-      
-      <%= render :file => 'orders/index' %>
+
+      <h1>Edit order:</h1>
+      <%= render :file => "/orders/edit"
+
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">

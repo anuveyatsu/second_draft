@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'account/pickupstore', as: 'account_pickupstore'
   get 'account/history', as: 'account_history'
   get 'account/add', as: 'account_create'
+  get 'account/edit', as: 'account_edit'
 
   devise_for :sellers
   devise_for :pickups
