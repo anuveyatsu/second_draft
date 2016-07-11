@@ -55,7 +55,38 @@ class AccountController < OrdersController
   def history
     @orders = current_seller.orders.all
   end
+
   def pickupstore
+  end
+
+  def receive
+    @@order = Order.find(params[:order])
+    if @@order.delivery_status == "processing"
+      @@order.delivery_status = "preparing_to_ship"
+      @@order.save
+      redirect_to account_pickupstore_path
+    elsif @@order.delivery_status == "in_transit"
+      @@order.delivery_status = "ready_for_collection"
+      @@order.save
+      redirect_to account_pickupstore_path
+    end
+  end
+
+  def release
+    @@order = Order.find(params[:order])
+    if @@order.pincode == params[:pin]
+      if @@order.delivery_status == "preparing_to_ship"
+        @@order.delivery_status = "in_transit"
+        @@order.save
+        redirect_to account_pickupstore_path
+      elsif @@order.delivery_status == "ready_for_collection"
+        @@order.delivery_status = "completed"
+        @@order.save
+        redirect_to account_pickupstore_path
+      end
+    else
+      redirect_to account_pickupstore_path, alert: 'Pincode is wrong!'
+    end
   end
 
   private

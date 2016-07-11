@@ -15,21 +15,39 @@
             <table class="table table-striped table-condensed table-responsive table-bordered">
               <thead>
                 <tr>
+                  <th class="text-center">ID</th>
                   <th class="text-center">From</th>
-                  <th class="text-center">Delivered by</th>
+                  <th class="text-center">Expected by</th>
+                  <th class="text-center">Received</th>
                 </tr>
               </thead>
               <tbody>
                 <% Order.all.each do |order| %>
                   <% if order.from == current_pickup.id && order.delivery_status == "processing" %>
                       <tr>
-                        <td><%= order.seller_id %></td>
-                        <td><%= order.updated_at %></td>
+                        <td><%= order.id %></td>
+                        <td><%= Seller.find_by(id: order.seller_id).seller_name %></td>
+                        <td><%= order.updated_at.to_date + 5 %></td>
+                        <td>
+                          <%= link_to account_receive_path(:order => order.id), {:controller => "account", :action => "receive", :method => "post", data: { confirm: 'Have you checked the ID of the parcel?' } } do %>
+                            <button class="btn btn-success">
+                              <span class='glyphicon glyphicon-ok-sign'></span>
+                            </button>
+                          <% end %>
+                        </td>
                       </tr>
                   <% elsif order.store_id == current_pickup.id && order.delivery_status == "in_transit" %>
                       <tr>
-                        <td><%= order.seller_id %></td>
-                        <td><%= order.updated_at %></td>
+                        <td><%= order.id %></td>
+                        <td><%= Seller.find_by(id: order.seller_id).seller_name %></td>
+                        <td><%= order.updated_at.to_date + 5 %></td>
+                        <td>
+                          <%= link_to account_receive_path(:order => order.id), {:method => "post", data: { confirm: 'Have you checked the ID of the parcel?' } } do %>
+                            <button class="btn btn-success">
+                              <span class='glyphicon glyphicon-ok-sign'></span>
+                            </button>
+                          <% end %>
+                        </td>
                       </tr>
                   <% end %>
                 <% end %>
@@ -44,24 +62,40 @@
                   <th class="text-center">PIN</th>
                   <th class="text-center">Customer's details</th>
                   <th class="text-center">Seller</th>
+                  <th class="text-center">Released</th>
                 </tr>
               </thead>
               <tbody>
-                <% Order.all.each do |order| %>
-                  <% if order.from == current_pickup.id && order.delivery_status == "preparing_to_ship" %>
-                    <tr>
-                      <td><%= order.pincode %></td>
-                      <td>Awaiting for courier</td>
-                      <td><%= order.seller_id %></td>
-                    </tr>
-                  <% elsif order.store_id == current_pickup.id && order.delivery_status == "ready_for_collection" %>
-                    <tr>
-                      <td><%= order.pincode %></td>
-                      <td><%= order.buyer_name %></td>
-                      <td><%= order.seller_id %></td>
-                    </tr>
+                  <% Order.all.each do |order| %>
+                    <% if order.from == current_pickup.id && order.delivery_status == "preparing_to_ship" %>
+                      <tr>
+                        <td><%= order.pincode %></td>
+                        <td>Awaiting for courier</td>
+                        <td><%= Seller.find_by(id: order.seller_id).seller_name %></td>
+                        <td>
+                          <%= link_to account_release_path(:order => order.id), {:method => "post", data: { confirm: 'Have you checked the PIN of the parcel?' } } do %>
+                            <button class="btn btn-success">
+                              <span class='glyphicon glyphicon-send'></span>
+                            </button>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% elsif order.store_id == current_pickup.id && order.delivery_status == "ready_for_collection" %>
+                      <tr>
+                        <td><%= order.pincode %></td>
+                        <td><%= order.buyer_name %></td>
+                        <td><%= Seller.find_by(id: order.seller_id).seller_name %></td>
+                        <td>
+                          <%= link_to account_release_path(:order => order.id), {:controller => "account", :action => "receive", :method => "post", data: { confirm: 'Have you checked the PIN of the parcel?' } } do %>
+                            <button class="btn btn-success">
+                              <span class='glyphicon glyphicon-send'></span>
+                            </button>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
                   <% end %>
-                <% end %>
+
               </tbody>
             </table>
           </div>

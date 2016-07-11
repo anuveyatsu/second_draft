@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'account/history', as: 'account_history'
   get 'account/add', as: 'account_create'
   get 'account/edit', as: 'account_edit'
+  post 'account/receive'
+  post 'account/release'
 
   devise_for :sellers
   devise_for :pickups
