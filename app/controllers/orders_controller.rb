@@ -27,6 +27,7 @@ class OrdersController < ApplicationController
     def create
       @order = current_seller.orders.new(order_params)
       @order.seller_id = current_seller.id
+      @order.pincode = rand(10000..99999)
       respond_to do |format|
         if @order.save
           format.html { redirect_to account_path, notice: 'Order was successfully created.' }

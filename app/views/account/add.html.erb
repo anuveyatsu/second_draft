@@ -98,101 +98,136 @@
     }
   }
   /*
-  handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'map1'}}, function(){
-    markers = handler.addMarkers([
-      {
-        "lat": 43.233539,
-        "lng": 76.957034,
-        "picture": {
-          "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-          "width":  36,
-          "height": 36
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map1'}}, function(){
+      markers = handler.addMarkers([
+        {
+          "lat": 43.233539,
+          "lng": 76.957034,
+          "picture": {
+            "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+            "width":  36,
+            "height": 36
+          },
+          "infowindow": "Dostyk Plaza"
         },
-        "infowindow": "Dostyk Plaza"
-      },
-      {
-        "lat": 43.202411,
-        "lng": 76.892582,
-        "picture": {
-          "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-          "width":  36,
-          "height": 36
+        {
+          "lat": 43.202411,
+          "lng": 76.892582,
+          "picture": {
+            "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+            "width":  36,
+            "height": 36
+          },
+          "infowindow": "Mega Center"
         },
-        "infowindow": "Mega Center"
-      },
-      {
-        "lat": 43.227796,
-        "lng": 76.960678,
-        "picture": {
-          "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-          "width":  36,
-          "height": 36
+        {
+          "lat": 43.227796,
+          "lng": 76.960678,
+          "picture": {
+            "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+            "width":  36,
+            "height": 36
+          },
+          "infowindow": "Royal Petrol"
         },
-        "infowindow": "Royal Petrol"
-      },
-      {
-        "lat": 43.248880,
-        "lng": 76.943008,
-        "picture": {
-          "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-          "width":  36,
-          "height": 36
+        {
+          "lat": 43.248880,
+          "lng": 76.943008,
+          "picture": {
+            "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+            "width":  36,
+            "height": 36
+          },
+          "infowindow": "Super Market"
         },
-        "infowindow": "Super Market"
-      },
-      {
-        "lat": 43.217882,
-        "lng": 76.842853,
-        "picture": {
-          "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-          "width":  36,
-          "height": 36
+        {
+          "lat": 43.217882,
+          "lng": 76.842853,
+          "picture": {
+            "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+            "width":  36,
+            "height": 36
+          },
+          "infowindow": "Magnum"
         },
-        "infowindow": "Magnum"
-      },
-      {
-        "lat": 43.234105,
-        "lng": 76.889586,
-        "picture": {
-          "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-          "width":  36,
-          "height": 36
+        {
+          "lat": 43.234105,
+          "lng": 76.889586,
+          "picture": {
+            "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+            "width":  36,
+            "height": 36
+          },
+          "infowindow": "Bekker"
         },
-        "infowindow": "Bekker"
-      },
-      {
-        "lat": 43.240487,
-        "lng": 76.924873,
-        "picture": {
-          "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-          "width":  36,
-          "height": 36
-        },
-        "infowindow": "Promenade"
-      }
-    ]);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-  });
+        {
+          "lat": 43.240487,
+          "lng": 76.924873,
+          "picture": {
+            "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+            "width":  36,
+            "height": 36
+          },
+          "infowindow": "Promenade"
+        }
+      ]);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
   */
+
   var map1, map2;
   function initMap() {
+    var almaty = {lat: 43.2220, lng: 76.8512};
+    var storeLocations = [
+      ["Dostyk Plaza", 43.233539, 76.957034],
+      ["Mega Center", 43.202411, 76.892582],
+      ["Royal Petrol", 43.227796, 76.960678],
+      ["Super Market", 43.248880, 76.943008],
+      ["Magnum", 43.217882, 76.842853],
+      ["Bekker", 43.234105, 76.889586],
+      ["Promenade", 43.240487, 76.924873]
+    ];
     var mapOptions = {
-      center: {lat: 43.233539, lng: 76.957034},
+      center: almaty,
       zoom: 11,
       disableDefaultUI: true,
-
     }
     map1 = new google.maps.Map(document.getElementById('map1'), mapOptions);
     map2 = new google.maps.Map(document.getElementById('map2'), mapOptions);
-    var marker = new google.maps.Marker({
-      position: {lat: 43.233539, lng: 76.957034},
-      map: map1,
-      title: 'Dostyk Plaza'
-    });
+    var infowindow = new google.maps.InfoWindow();
+    var marker, i;
+    var markers = [];
+    for (i = 0; i < storeLocations.length; i++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(storeLocations[i][1], storeLocations[i][2]),
+        map: map1
+      });
+      markers.push(marker);
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(storeLocations[i][0]);
+          infowindow.open(map1, marker);
+          map1.setZoom(13);
+        }
+      })(marker, i));
+    }
+    dropOff = document.getElementById('selectDropOffDiv');
+    dropOff.onclick = function () {
+      var selects = document.getElementsByClassName('selectDropOff');
+      var i, index;
+      for (i = 0; i < selects.length; i++) {
+          if (selects[i].checked) {
+              index = i;
+          }
+      }
+      infowindow.setContent(storeLocations[index][0]);
+      infowindow.open(map1, markers[index]);
+      map1.setZoom(13);
+      map1.setCenter(new google.maps.LatLng(storeLocations[index][1], storeLocations[index][2]));
+    };
   }
-
 </script>
 <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGrEiG-wyu70OQ9Cr6aZRjCMHAfgfxCso&callback=initMap">

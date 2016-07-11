@@ -1,4 +1,3 @@
-
 <%= simple_form_for (@order) do |f| %>
     <%= f.error_notification %>
     <div class="row" style="padding-bottom:40px" id="step1">
@@ -6,7 +5,8 @@
       <div class="well-sm col-sm-4 text-left" style="max-width:25%">
         <%= f.input :from, label: false,
             :collection => Pickup.all.map {|pickup| ["#{pickup.company}", pickup.id]},
-            as: :radio_buttons %>
+            as: :radio_buttons, input_html: { class: 'selectDropOff' },
+            wrapper_html: { id: 'selectDropOffDiv' } %>
       </div>
       <div class="well-sm col-sm-9">
         <div id="map1" style='width:100%; height: 290px'></div>
