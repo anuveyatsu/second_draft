@@ -24,26 +24,26 @@
               <tbody>
                 <% Order.all.each do |order| %>
                   <% if order.from == current_pickup.id && order.delivery_status == "processing" %>
-                      <tr>
+                      <tr class="text-center info">
                         <td><%= order.id %></td>
                         <td><%= Seller.find_by(id: order.seller_id).seller_name %></td>
                         <td><%= order.updated_at.to_date + 5 %></td>
                         <td>
                           <%= link_to account_receive_path(:order => order.id), {:controller => "account", :action => "receive", :method => "post", data: { confirm: 'Have you checked the ID of the parcel?' } } do %>
-                            <button class="btn btn-success">
+                            <button class="btn btn-info">
                               <span class='glyphicon glyphicon-ok-sign'></span>
                             </button>
                           <% end %>
                         </td>
                       </tr>
                   <% elsif order.store_id == current_pickup.id && order.delivery_status == "in_transit" %>
-                      <tr>
+                      <tr class="text-center warning">
                         <td><%= order.id %></td>
                         <td><%= Seller.find_by(id: order.seller_id).seller_name %></td>
                         <td><%= order.updated_at.to_date + 5 %></td>
                         <td>
                           <%= link_to account_receive_path(:order => order.id), {:method => "post", data: { confirm: 'Have you checked the ID of the parcel?' } } do %>
-                            <button class="btn btn-success">
+                            <button class="btn btn-info">
                               <span class='glyphicon glyphicon-ok-sign'></span>
                             </button>
                           <% end %>
@@ -59,6 +59,7 @@
             <table class="table table-striped table-condensed table-responsive table-bordered">
               <thead>
                 <tr>
+                  <th class="text-center">ID</th>
                   <th class="text-center">PIN</th>
                   <th class="text-center">Customer's details</th>
                   <th class="text-center">Seller</th>
@@ -68,8 +69,9 @@
               <tbody>
                   <% Order.all.each do |order| %>
                     <% if order.from == current_pickup.id && order.delivery_status == "preparing_to_ship" %>
-                      <tr>
-                        <td><%= order.pincode %></td>
+                      <tr class="text-center warning">
+                        <td><%= order.id %></td>
+                        <td><input name="pin" placeholder="Pincode" onchange="bindvalue(this)" style="width:80%"></input></td>
                         <td>Awaiting for courier</td>
                         <td><%= Seller.find_by(id: order.seller_id).seller_name %></td>
                         <td>
@@ -81,8 +83,9 @@
                         </td>
                       </tr>
                     <% elsif order.store_id == current_pickup.id && order.delivery_status == "ready_for_collection" %>
-                      <tr>
-                        <td><%= order.pincode %></td>
+                      <tr class="text-center success">
+                        <td><%= order.id %></td>
+                        <td><input name="pin" placeholder="Pincode" onchange="bindvalue(this)" style="width:80%"></input></td>
                         <td><%= order.buyer_name %></td>
                         <td><%= Seller.find_by(id: order.seller_id).seller_name %></td>
                         <td>
@@ -95,7 +98,6 @@
                       </tr>
                     <% end %>
                   <% end %>
-
               </tbody>
             </table>
           </div>
@@ -103,11 +105,24 @@
       </div>
       <div class="col-sm-2 sidenav" style="padding-top:40px">
         <div class="well">
-          <p>Expected today:</p>
-        </div>
-        <div class="well">
           <p>History:</p>
+          <% Order.all.each do |order| %>
+            <% if order.from == current_pickup.id && order.delivery_status == 'in_transit' %>
+              <p><%= order.id %> from <%= Seller.find_by(id: order.seller_id).seller_name %></p>
+            <% elsif order.store_id == current_pickup.id && order.delivery_status == 'completed' %>
+              <p><%= order.id %> from <%= Seller.find_by(id: order.seller_id).seller_name %></p>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
+  <script>
+    function bindvalue (v) {
+      var X = v.parentNode.parentNode;
+      var y = $(X).find("a").attr("href");
+      var x = v.value;
+      y += '&pin=' + x;
+      $(X).find("a").attr("href", y);
+    }
+  </script>

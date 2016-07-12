@@ -10,10 +10,17 @@
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
   <% flash.each do |type, message| %>
-    <p class="alert <%= flash_class type %>" role="alert">
-      <button class="close" data-dismiss="alert">x</button>
-      <%= message %>
-    </p>
+    <% if type=='notice' %>
+      <%= content_tag(:p, class: "alert alert-success") do %>
+        <button class="close" data-dismiss="alert">x</button>
+        <%= message %>
+      <% end %>
+    <% elsif type=='alert' %>
+      <%= content_tag(:p, class: "alert alert-danger") do %>
+        <button class="close" data-dismiss="alert">x</button>
+        <%= message %>
+      <% end %>
+    <% end %>
   <% end %>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">

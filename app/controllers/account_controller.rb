@@ -23,6 +23,7 @@ class AccountController < OrdersController
   def create
     @order = current_seller.orders.new(order_params)
     @order.seller_id = current_seller.id
+    @order.delivery_status = "processing"
     respond_to do |format|
       if @order.save
         format.html { redirect_to account_path, notice: 'Order was successfully created.' }
@@ -74,18 +75,19 @@ class AccountController < OrdersController
 
   def release
     @@order = Order.find(params[:order])
-    if @@order.pincode == params[:pin]
+    @pin = params[:pin]
+    if @@order.pincode.to_s == @pin.to_s
       if @@order.delivery_status == "preparing_to_ship"
         @@order.delivery_status = "in_transit"
         @@order.save
-        redirect_to account_pickupstore_path
+        redirect_to account_pickupstore_path, notice: 'The parcel was passed to courier.'
       elsif @@order.delivery_status == "ready_for_collection"
         @@order.delivery_status = "completed"
         @@order.save
-        redirect_to account_pickupstore_path
+        redirect_to account_pickupstore_path, notice: 'The parcel was passed to customer.'
       end
     else
-      redirect_to account_pickupstore_path, alert: 'Pincode is wrong!'
+      redirect_to account_pickupstore_path, alert: 'You have entered wrong PIN.'
     end
   end
 
