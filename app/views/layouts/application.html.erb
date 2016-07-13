@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SecondDraft</title>
+  <title>NextDoor</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -16,7 +16,7 @@
         <%= message %>
       <% end %>
     <% elsif type=='alert' %>
-      <%= content_tag(:p, class: "alert alert-danger") do %>
+      <%= content_tag(:p, class: "alert alert-danger", style: "margin:0") do %>
         <button class="close" data-dismiss="alert">x</button>
         <%= message %>
       <% end %>
@@ -36,7 +36,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li><a href="#about">ABOUT</a></li>
               <li><a href="#services">SERVICES</a></li>
-              <li><a href="#portfolio">PORTFOLIO</a></li>
+              <li><a href="#portfolio">STORES</a></li>
               <li><a href="#pricing">PRICING</a></li>
               <li><a href="#contact">CONTACT</a></li>
               <% if seller_signed_in? %>
