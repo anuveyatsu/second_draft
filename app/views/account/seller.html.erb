@@ -1,12 +1,41 @@
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-2 sidenav text-left">
-      <p>Welcome <a href=""><%= current_seller.seller_rep_name %></a></p>
-      <p>Company name: <a href=""><%= current_seller.seller_name %></a></p>
-      <p>Orders last 7 days: __</p>
-      <p>Orders last 30 days: __</p>
-      <p>Average delivery time: __</p>
-      <button class="btn btn-primary">Edit your account</button>
+      <div class="panel-group" id="accordion">
+        <div class="panel">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Account info</a>
+            </h4>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <p>Welcome <a href=""><%= current_seller.seller_rep_name %></a></p>
+              <p>Company name: <a href=""><%= current_seller.seller_name %></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Balance</a>
+            </h4>
+          </div>
+          <div id="collapse2" class="panel-collapse collapse">
+            <div class="panel-body">----</div>
+          </div>
+        </div>
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Processed orders</a>
+            </h4>
+          </div>
+          <div id="collapse3" class="panel-collapse collapse">
+            <div class="panel-body"><p>Last 7 days:<p>Last 30 days:<p>Average delivery time:</div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-sm-8 text-center inline">
       <ul class="nav nav-pills nav-justified" style="padding:20px">

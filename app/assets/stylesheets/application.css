@@ -154,11 +154,12 @@
       color: #fff !important;
   }
   footer {
-    height: 70px;
+    height: 197px;
+
   }
   footer .glyphicon {
       font-size: 20px;
-      margin-bottom: 5px;
+      margin-bottom: 20px;
       color: #FF5722;
   }
   .slideanim {visibility:hidden;}

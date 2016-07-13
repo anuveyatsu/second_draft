@@ -34,11 +34,11 @@
           </div>
           <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#about">ABOUT</a></li>
-              <li><a href="#services">SERVICES</a></li>
-              <li><a href="#portfolio">STORES</a></li>
-              <li><a href="#pricing">PRICING</a></li>
-              <li><a href="#contact">CONTACT</a></li>
+              <li><a class="landing" href="#about">ABOUT</a></li>
+              <li><a class="landing" href="#services">SERVICES</a></li>
+              <li><a class="landing" href="#portfolio">STORES</a></li>
+              <li><a class="landing" href="#pricing">PRICING</a></li>
+              <li><a class="landing" href="#contact">CONTACT</a></li>
               <% if seller_signed_in? %>
                 <li><a href="/account/seller"><span class="glyphicon glyphicon-user"></span> ACCOUNT</a></li>
                 <li><%= link_to 'LOGOUT', destroy_seller_session_path, :method => :delete %>
@@ -57,7 +57,7 @@
 
     <%= yield %>
 
-    <footer class="container-fluid text-center">
+    <footer class="container-fluid text-center" style="padding: 60px 50px !important">
       <a href="#myPage" title="To Top">
         <span class="glyphicon glyphicon-chevron-up"></span>
       </a>
@@ -99,6 +99,20 @@
             });
           });
         })
+
+        var i, x, y;
+
+        x = location.href;
+
+        y = document.getElementsByClassName('landing');
+
+        if (x.includes('account')) {
+          i = 0;
+          while (i < y.length) {
+            y[i].style.display = 'none';
+            i++;
+          }
+        }
       </script>
 </body>
 </html>
