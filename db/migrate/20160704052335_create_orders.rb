@@ -7,7 +7,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :buyer_email
       t.string :delivery_option
       t.string :transport_provider
-      t.string :delivery_status
+      t.string :delivery_status, :default => "processing"
       t.string :parcel_size_L
       t.string :parcel_size_W
       t.string :parcel_size_H

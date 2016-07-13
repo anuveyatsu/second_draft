@@ -1,12 +1,53 @@
   <div class="container-fluid text-center">
     <div class="row content">
-      <div class="col-sm-2 sidenav" style="padding:40px">
-        <p>Welcome <a href="">'first_name'</a></p>
-        <p>Your balance: __</p>
-        <p>Orders last 7 days: __</p>
-        <p>Orders last 30 days: __</p>
-        <p>Avergage storage time: __</p>
-        <a href"#">Edit your account</a>
+      <div class="col-sm-2 sidenav" style="padding-top:40px">
+        <div class="well" style="margin:0">
+
+          <div class="panel-group" id="accordion">
+            <div class="panel">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Account info</a>
+                </h4>
+              </div>
+              <div id="collapse1" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <p>Welcome <%= current_pickup.first_name %>
+                  <p><%= current_pickup.email %>
+                  <p><%= current_pickup.company %>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-warning">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Earned balance</a>
+                </h4>
+              </div>
+              <div id="collapse2" class="panel-collapse collapse">
+                <div class="panel-body">----</div>
+              </div>
+            </div>
+            <div class="panel panel-warning">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Processed orders</a>
+                </h4>
+              </div>
+              <div id="collapse3" class="panel-collapse collapse">
+                <div class="panel-body"><p>Last 7 days:<p>Last 30 days:<p>Average storing time:</div>
+              </div>
+            </div>
+          </div>
+          <!--
+          <p>Welcome <a href="">'first_name'</a></p>
+          <p>Your balance: __</p>
+          <p>Orders last 7 days: __</p>
+          <p>Orders last 30 days: __</p>
+          <p>Avergage storage time: __</p>
+          <a href"#">Edit your account</a>
+        -->
+        </div>
       </div>
       <div class="col-sm-8 text-center" style="padding:40px">
         <div class="row">
