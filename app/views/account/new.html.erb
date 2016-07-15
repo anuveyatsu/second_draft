@@ -1,13 +1,10 @@
 <div class="mainDiv">
   <div style="padding:40px" class="text-center well">
-    <h1 class="text-primary">Register as</h1>
-
-    <div class="btn-group btn-group-justified" role="group" aria-label="..." style="padding:20px">
-      <div class="btn-group" role="group">
-        <%= link_to "A seller", new_seller_registration_path, class: "btn btn-primary btn-lg" %>
-      </div>
-      <div class="btn-group" role="group">
-        <%= link_to "A pickupstore", new_pickup_registration_path, class: "btn btn-danger btn-lg" %>
+    <div class="container-fluid" style="max-width:240px">
+      <div class="list-group">
+        <h3 class="list-group-item">Register as a</h3>
+        <%= link_to "seller", new_seller_registration_path, :class => "list-group-item", :style => "text-align:center" %>
+        <%= link_to "pickupstore", new_pickup_registration_path, :class => "list-group-item", :style => "text-align:center" %>
       </div>
     </div>
   </div>
