@@ -1,33 +1,19 @@
-<div class="mainDiv" style="padding:10px">
-  <div class="container text-center well">
-    <h1 class="text-primary">Register as a seller</h1>
-
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
-
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password %>
+<div class="container text-center panel" style="padding-top:40px; margin-top:20px">
+  <div class="container-fluid" style="max-width:240px">
+    <div class="list-group text-center">
+      <h3 class="text-primary list-group-item">Register as a seller</h3>
+      <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name) do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.input :email, autofocus: true, label: false, placeholder: "Email", input_html: { class: "list-group-item", style: "margin-top:15px" } %><p>
+        <%= f.input :password, autocomplete: "off", label: false, placeholder: "Password", input_html: { class: "list-group-item" }, wrapper_html: { style: "margin-bottom:0" } %>
         <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "off" %>
-      </div>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+        <%= f.input :password_confirmation, autocomplete: "off", label: false, placeholder: "Confirm password", input_html: { class: "list-group-item" } %>
+        <%= f.button :submit, "Sign up", :class => "list-group-item btn-block active" %>
+      <% end %>
 
-      <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "Sign up", class: "btn btn-primary" %>
-      </div>
-    <% end %>
-
-    <%= render "sellers/shared/links" %>
+      <%= render "sellers/shared/links" %>
+    </div>
   </div>
 </div>
