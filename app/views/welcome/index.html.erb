@@ -1,5 +1,5 @@
 <div class="jumbotron text-center">
-    <h1>4PL Company</h1>
+    <h1>NextD</h1>
     <p style="line-height:120%">4th Party Logistics and Storagable Distribution</p>
     <!--
     <form class="form-inline" action="">
@@ -236,11 +236,9 @@
   <div id="googleMap" style="height:400px;width:100%;"></div>
 
   <!-- Add Google Maps -->
-  <script src="https://maps.googleapis.com/maps/api/js"></script>
   <script>
-  var myCenter = new google.maps.LatLng(43.243200, 76.953443);
-
   function initialize() {
+  var myCenter = new google.maps.LatLng(43.243200, 76.953443);
   var mapProp = {
     center:myCenter,
     zoom:12,
@@ -259,4 +257,7 @@
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+  <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANxM5eQLC7TDHanN0z6GRut4CbTRmyMj0&callback=initialize">
   </script>
