@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709091015) do
+ActiveRecord::Schema.define(version: 20160718074851) do
 
   create_table "buyer_legal_details", force: :cascade do |t|
     t.string   "b_legal_name"
@@ -150,8 +150,12 @@ ActiveRecord::Schema.define(version: 20160709091015) do
     t.string   "seller_address2"
     t.string   "seller_address3"
     t.string   "seller_phone"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
   end
 
+  add_index "sellers", ["confirmation_token"], name: "index_sellers_on_confirmation_token", unique: true
   add_index "sellers", ["email"], name: "index_sellers_on_email", unique: true
   add_index "sellers", ["reset_password_token"], name: "index_sellers_on_reset_password_token", unique: true
 
