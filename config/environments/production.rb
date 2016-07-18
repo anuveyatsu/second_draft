@@ -71,7 +71,7 @@ Rails.application.configure do
     :user_name => "anuar.ustayev@gmail.com",
     :password => "Vsunokl4",
     :authentication => "plain",
-    :domain  => 'gentle-forest-34866.herokuapp.com',
+    :domain  => 'gmail.com',
     :enable_starttls_auto => true
   }
 
