@@ -1,3 +1,4 @@
+require "prawn"
 class AccountController < OrdersController
   before_action :authenticate_seller!, only: [:seller]
   before_action :authenticate_pickup!, only: [:pickupstore]
@@ -89,6 +90,32 @@ class AccountController < OrdersController
     else
       redirect_to account_pickupstore_path, alert: 'You have entered wrong PIN.'
     end
+  end
+
+  def download_pdf
+    @label = Order.find(params[:order])
+    send_data generate_pdf(@label),
+              filename: "#{@label.id}.pdf",
+              type: "application/pdf"
+  end
+
+  private
+
+  def generate_pdf(label)
+    seller = Seller.find_by(id: label.seller_id)
+    pickup_from = Pickup.find_by(id: label.from)
+    pickup_to = Pickup.find_by(id: label.store_id)
+    Prawn::Document.new do
+      text "Order #{label.id}" #will be converted into barcode/QRcode
+      text "From: #{seller.seller_name}"
+      text "#{seller.seller_address1}"
+      text "#{seller.seller_phone}"
+      text "To: #{label.buyer_name}"
+      text "Phone: #{label.buyer_phone}"
+      text "Email: #{label.buyer_email}"
+      text "Drop-off store: #{pickup_from.company}"
+      text "Collection store: #{pickup_to.company}"
+    end.render
   end
 
   private

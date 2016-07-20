@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'account/edit', as: 'account_edit'
   post 'account/receive'
   post 'account/release'
+  get 'account/download_pdf'
 
   devise_for :sellers
   devise_for :pickups
