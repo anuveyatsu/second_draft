@@ -48,7 +48,7 @@
         <thead>
           <tr>
             <th class="text-center">From</th>
-
+            <th class="text-center">To</th>
             <th class="text-center">Parcel's content</th>
             <th colspan="3" class="text-center">Modify</th>
             <th class="text-center">Label</th>
@@ -59,8 +59,8 @@
           <% @orders.each do |order| %>
             <% if order.delivery_status != 'completed' %>
               <tr>
-                <td><%= order.from %></td>
-
+                <td><%= Pickup.find_by(id: order.from).company %></td>
+                <td><%= Pickup.find_by(id: order.store_id).company %></td>
                 <td><%= order.parcel_content %></td>
                 <td>
                   <%= content_tag :button, class: "btn btn-primary", 'data-toggle' => "modal", 'data-target' => "##{order.id}" do %>
@@ -164,7 +164,11 @@
 
                 </td>
                 <td>
-                  <%= link_to 'Print label', account_download_pdf_path(:order => order.id) %>
+                  <%= link_to account_download_pdf_path(:order => order.id) do %>
+                   <button class="btn btn-info">
+                     <span class="glyphicon glyphicon-print"></span>
+                   </button>
+                  <% end %>
                 </td>
               </tr>
             <% end %>
