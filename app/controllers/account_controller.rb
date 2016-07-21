@@ -1,4 +1,7 @@
 require "prawn"
+require 'barby'
+require 'barby/barcode/code_39'
+require 'barby/outputter/prawn_outputter'
 class AccountController < OrdersController
   before_action :authenticate_seller!, only: [:seller]
   before_action :authenticate_pickup!, only: [:pickupstore]
@@ -95,27 +98,41 @@ class AccountController < OrdersController
   def download_pdf
     @label = Order.find(params[:order])
     send_data generate_pdf(@label),
-              filename: "#{@label.id}.pdf",
+              filename: "order_#{@label.id}.pdf",
               type: "application/pdf"
   end
 
   private
-
   def generate_pdf(label)
     seller = Seller.find_by(id: label.seller_id)
     pickup_from = Pickup.find_by(id: label.from)
     pickup_to = Pickup.find_by(id: label.store_id)
     Prawn::Document.new do
-      text "Order #{label.id}" #will be converted into barcode/QRcode
-      text "From: #{seller.seller_name}"
-      text "#{seller.seller_address1}"
-      text "#{seller.seller_phone}"
-      text "To: #{label.buyer_name}"
-      text "Phone: #{label.buyer_phone}"
-      text "Email: #{label.buyer_email}"
-      text "Drop-off store: #{pickup_from.company}"
-      text "Collection store: #{pickup_to.company}"
+
+      bounding_box([0, 700], :width => 300, :height => 220) do
+        barcode = Barby::Code39.new "#{label.id}"
+        barcode.annotate_pdf(self, :x => 5, :y => 145)
+        font_size(25) do
+          text_box "NextD", :at => [210, 180]
+        end
+        font_size(16) do
+          text_box "From:", :at => [5, 140]
+          text_box "To:", :at => [5, 100]
+          text_box "Drop-off:", :at => [5, 40]
+          text_box "Pick-up:", :at => [155, 40]
+        end
+        text_box "#{seller.seller_name}", :at => [55, 137]
+        text_box "#{seller.seller_address1}", :at => [55,125]
+        text_box "#{seller.seller_phone}", :at => [55, 113]
+        text_box "#{label.buyer_name}", :at => [55, 97]
+        text_box "Phone: #{label.buyer_phone}", :at => [55, 85]
+        text_box "Email: #{label.buyer_email}", :at => [55, 73]
+        text_box "#{pickup_from.company}", :at => [73, 37]
+        text_box "#{pickup_to.company}", :at => [220, 37]
+        transparent(1) { stroke_bounds }
+      end
     end.render
+
   end
 
   private
