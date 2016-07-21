@@ -35,7 +35,7 @@
                   <div class="modal-body">
                     <p>
                      <strong>From:</strong>
-                     <%= order.from %>
+                     <%= Pickup.find_by(id: order.from).company %>
                     </p>
 
                     <p>
@@ -54,18 +54,18 @@
                     </p>
 
                     <p>
-                     <strong>Parcel size l:</strong>
-                     <%= order.parcel_size_L %>
+                     <strong>Customer name:</strong>
+                     <%= order.buyer_name %>
                     </p>
 
                     <p>
-                     <strong>Parcel size w:</strong>
-                     <%= order.parcel_size_W %>
+                     <strong>Customer phone:</strong>
+                     <%= order.buyer_phone %>
                     </p>
 
                     <p>
-                     <strong>Parcel size h:</strong>
-                     <%= order.parcel_size_H %>
+                     <strong>Customer email:</strong>
+                     <%= order.buyer_email %>
                     </p>
 
                     <p>
@@ -79,18 +79,8 @@
                     </p>
 
                     <p>
-                     <strong>Seller:</strong>
-                     <%= order.seller %>
-                    </p>
-
-                    <p>
-                     <strong>Store:</strong>
-                     <%= order.store %>
-                    </p>
-
-                    <p>
-                    <strong>Warehouse:</strong>
-                     <%= order.warehouse %>
+                    <strong>Pick-up:</strong>
+                     <%= Pickup.find_by(id: order.store_id).company %>
                     </p>
                   </div>
                   <div class="modal-footer">
