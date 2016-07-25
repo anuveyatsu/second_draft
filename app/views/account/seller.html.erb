@@ -47,9 +47,10 @@
       <table class="table table-striped table-condensed table-responsive table-bordered">
         <thead>
           <tr>
+            <th class="text-center">ID</th>
             <th class="text-center">From</th>
             <th class="text-center">To</th>
-            <th class="text-center">Parcel's content</th>
+            <th class="text-center">Delivery status</th>
             <th colspan="3" class="text-center">Modify</th>
             <th class="text-center">Label</th>
           </tr>
@@ -59,9 +60,10 @@
           <% @orders.each do |order| %>
             <% if order.delivery_status != 'completed' %>
               <tr>
+                <td><%= order.id %></td>
                 <td><%= Pickup.find_by(id: order.from).company %></td>
                 <td><%= Pickup.find_by(id: order.store_id).company %></td>
-                <td><%= order.parcel_content %></td>
+                <td><%= order.delivery_status %></td>
                 <td>
                   <%= content_tag :button, class: "btn btn-primary", 'data-toggle' => "modal", 'data-target' => "##{order.id}" do %>
                     <span class='glyphicon glyphicon-search'></span>
