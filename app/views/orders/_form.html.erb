@@ -1,30 +1,40 @@
 <%= simple_form_for (@order) do |f| %>
     <%= f.error_notification %>
     <div class="row" style="padding-bottom:40px" id="step1">
-      <h3>Choose your drop-off store:</h3>
-      <div class="well-sm col-sm-4 text-left" style="max-width:25%">
-        <%= f.input :from, label: false,
-            :collection => Pickup.all.map {|pickup| ["#{pickup.company}", pickup.id]},
-            as: :radio_buttons, input_html: { class: 'selectDropOff' },
-            wrapper_html: { id: 'selectDropOffDiv' } %>
+
+      <div class="panel col-sm-3 text-left" style="padding:13px">
+
+          <h4>Drop-off store:</h4>
+
+
+          <%= f.input :from, label: false,
+              :collection => Pickup.all.map {|pickup| ["#{pickup.company}", pickup.id]},
+              as: :radio_buttons, input_html: { class: 'selectDropOff' },
+              wrapper_html: { id: 'selectDropOffDiv' } %>
+
       </div>
-      <div class="well-sm col-sm-9">
-        <div id="map1" style='width:100%; height: 290px'></div>
+      <div class="col-sm-6">
+        <div id="map1" style='width:100%; height: 328px; margin:0'></div>
       </div>
-    </div>
-    <div class="row" style="padding-bottom:40px" id="step2">
-      <h3>Choose pick-up store:</h3>
-      <div class="well-sm col-sm-4 text-left" style="max-width:25%">
+
+    <!-- <div class="row" style="padding-bottom:40px" id="step2"> -->
+
+      <div class="panel col-sm-3 text-left" style="padding:13px">
+
+          <h4>Pick-up store:</h4>
+
         <%= f.input :store_id, label: false,
             :collection => Pickup.all.map {|pickup| ["#{pickup.company}", pickup.id]},
-            as: :radio_buttons %>
+            as: :radio_buttons, input_html: { class: 'selectPickUp' },
+            wrapper_html: { id: 'selectPickUpDiv' } %>
       </div>
+      <!--
       <div class="well-sm col-sm-9">
         <div id="map2" style='width:100%; height: 290px'></div>
       </div>
+    </div> -->
     </div>
-
-    <div class="row" style="padding-bottom:40px" id="step3">
+    <div class="row" style="padding-bottom:40px" id="step2">
 
         <%= f.input :buyer_name, placeholder: "Name", label: "Enter customer's details:" %>
 
@@ -33,20 +43,25 @@
         <%= f.input :buyer_email, as: :email, placeholder: "Email", label: false %>
     </div>
 
-    <div class="row" style="padding-bottom:40px" id="step4">
+    <div class="row" style="padding-bottom:40px" id="step3">
         <%= f.input :delivery_option, as: :radio_buttons,
-            :collection => ['Standard', 'Premium'] %>
+            :collection => ['Standard', 'Premium'], input_html: { class: 'selectDeliveryOption' },
+            wrapper_html: { id: 'selectDeliveryOptionDiv' } %>
 
         <%= f.input :transport_provider, as: :radio_buttons,
-            :collection => ['General Logistics', 'I will deliver by myself'] %>
+            :collection => ['General Logistics', 'I will deliver by myself'],
+            input_html: { class: 'selectTrasnportProvider' },
+            wrapper_html: { id: 'selectTrasnportProviderDiv' } %>
 
         <%= f.input :parcel_weight, placeholder: "Weight", label: "Parcel details:" %>
 
         <%= f.input :parcel_content, placeholder: "Content", label: false %>
     </div>
 
-    <div class="row" style="padding-bottom:40px" id="step5">
+    <div class="row" style="padding-bottom:40px" id="step4">
       <h4>You are almost there!</h4>
+      <h6>This order will cost you:</h6>
+      <h6 id="price"></h6>
     </div>
 
     <%= f.button :submit, class: "btn btn-primary", id: "createButton" %>

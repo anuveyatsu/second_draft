@@ -1,14 +1,18 @@
 <div class="jumbotron text-center">
     <h1>NextD</h1>
     <p style="line-height:120%">4th Party Logistics and Storagable Distribution</p>
-    <!--
-    <form class="form-inline" action="">
-      <input type="text" class="form-control" size="50" placeholder="Username" required>
-      <p><input type="password" class="form-control" size="50" placeholder="Password" required>
-      <p><input type="submit" class="btn btn-danger" value="Login">
-    </form>
-  -->
-  </div>
+
+      <%= simple_form_for @subscriber do |f| %>
+      <div class="input-group" style="margin: 0 30vw 0 30vw">
+        <%= f.input :email,
+        placeholder: "Enter your email to receive latest news", label: false,
+        :input_html => {class: "form-control", size: 50} %>
+        <span class="input-group-btn">
+        <%= f.button :submit, "Subscribe", class: "btn btn-danger" %></span>
+      </div>
+      <% end %>
+
+</div>
 
   <!-- Container (About Section) -->
   <div id="about" class="container-fluid" style="padding: 60px 50px !important">

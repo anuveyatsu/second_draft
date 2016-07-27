@@ -28,7 +28,7 @@
         <div class="panel panel-warning">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Processed orders</a>
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Stats</a>
             </h4>
           </div>
           <div id="collapse3" class="panel-collapse collapse">
@@ -47,11 +47,28 @@
       <%= render :file => 'orders/index' %>
     </div>
     <div class="col-sm-2 sidenav">
-      <div class="well">
-        <p>Notifications:</p>
+      <div class="panel">
+        <br /><h4>Price list:</h4>
+        <div class="list-group">
+          <a class="list-group-item" href="#">
+            <h5 class="list-group-item-heading">Standard</h5>
+            <p class="list-group-item-text">Gen logistics: 350 KZT</p>
+            <p class="list-group-item-text">Storage only: 150 KZT</p><br />
+          </a>
+        </div>
+        <div class="list-group">
+          <a class="list-group-item" href="#">
+            <h5 class="list-group-item-heading">Premium</h5>
+            <p class="list-group-item-text">Gen logistics: 950 KZT</p>
+            <p class="list-group-item-text">Storage only: 250 KZT</p><br />
+          </a>
+        </div>
       </div>
-      <div class="well">
-        <p>News:</p>
+      <div class="panel list-group">
+        <br /><h4 class="list-group-item-heading">Parcel size restrictions:</h4><br />
+        <p class="list-group-item-text">MAX Length: 50 cm</p><p>
+        <p class="list-group-item-text">MAX Width: 50 cm</p><p>
+        <p class="list-group-item-text">MAX Height: 50 cm</p><br />
       </div>
     </div>
   </div>

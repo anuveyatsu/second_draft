@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718074851) do
+ActiveRecord::Schema.define(version: 20160727070141) do
 
   create_table "buyer_legal_details", force: :cascade do |t|
     t.string   "b_legal_name"
@@ -183,6 +183,12 @@ ActiveRecord::Schema.define(version: 20160718074851) do
     t.string   "store_IdUser"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+  end
+
+  create_table "subscribers", force: :cascade do |t|
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "transactions", force: :cascade do |t|

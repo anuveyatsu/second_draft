@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'subscribers/create'
+
   resources :orders
   get 'account/index', as: 'account'
   get 'account/new', as: 'account_new'
@@ -16,6 +18,8 @@ Rails.application.routes.draw do
   devise_for :pickups
 
   root 'welcome#index'
+
+  resources :subscribers
 
   get 'register', to: 'account#new', as: :register
   get 'login', to: 'account#index', as: :login
