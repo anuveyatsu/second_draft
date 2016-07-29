@@ -58,9 +58,13 @@
             input_html: { class: 'selectTrasnportProvider' },
             wrapper_html: { id: 'selectTrasnportProviderDiv' } %>
 
-
-        <%= f.input :parcel_weight, placeholder: "Weight in kilograms (max 10)", label: 'Parcel details:',
-        :input_html => {style: "width:250px;margin:auto", id: "weight", type: "number"} %>
+        <h4>Parcel details:</h4>
+        <div class="input-group" style="width:250px;margin:auto">
+          <%= f.input :parcel_weight, placeholder: "Weight (max 10)", label: false,
+          :input_html => {style: "width:208px;margin:auto", id: "weight", type: "number",
+            class: "form-control", aria: {describedby: "basic-addon1"}} %>
+          <span class="input-group-addon" id="basic-addon2">Kg</span>
+        </div><p>
 
         <%= f.input :parcel_content, placeholder: "Content", label: false,
         :input_html => {style: "width:250px;margin:auto", id: "content"} %>

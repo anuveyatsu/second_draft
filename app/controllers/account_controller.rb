@@ -108,29 +108,69 @@ class AccountController < OrdersController
     pickup_from = Pickup.find_by(id: label.from)
     pickup_to = Pickup.find_by(id: label.store_id)
     Prawn::Document.new do
-
-      bounding_box([0, 700], :width => 300, :height => 220) do
-        barcode = Barby::Code39.new "#{label.id}"
-        barcode.annotate_pdf(self, :x => 5, :y => 145)
-        font_size(25) do
-          text_box "NextD", :at => [210, 180]
-        end
-        font_size(16) do
-          text_box "From:", :at => [5, 140]
-          text_box "To:", :at => [5, 100]
-          text_box "Drop-off:", :at => [5, 40]
-          text_box "Pick-up:", :at => [155, 40]
-        end
-        text_box "#{seller.seller_name}", :at => [55, 137]
-        text_box "#{seller.seller_address1}", :at => [55,125]
-        text_box "#{seller.seller_phone}", :at => [55, 113]
-        text_box "#{label.buyer_name}", :at => [55, 97]
-        text_box "Phone: #{label.buyer_phone}", :at => [55, 85]
-        text_box "Email: #{label.buyer_email}", :at => [55, 73]
-        text_box "#{pickup_from.company}", :at => [73, 37]
-        text_box "#{pickup_to.company}", :at => [220, 37]
+      #stroke_axis
+      bounding_box([0, 700], :width => 540, :height => 220) do
+        self.line_width = 5
+        self.stroke_color = "D2D6DF"
         transparent(1) { stroke_bounds }
+
+        stroke do
+          vertical_line 0, 220, :at => 75
+          vertical_line 0, 220, :at => 430
+          horizontal_line 75, 430, :at => 160
+          vertical_line 90, 160, :at => 252
+          horizontal_line 75, 540, :at => 90
+          horizontal_line 75, 430, :at => 45
+        end
+
+        barcode = Barby::Code39.new "00000000000#{label.id}"
+        rotate(270, :origin => [20, 200]) do
+          barcode.annotate_pdf(self, :x => 15, :y => 195)
+          text_box "00000000000#{label.id}", :at => [65, 195]
+        end
+
+        text_box "NextD", :at => [450, 200], :size => 25
+        text_box "LOGO", :at => [320,195], :size => 18
+
+        font_size(6) do
+          text_box "Seller info", :at => [80,215]
+          text_box "Drop-off:", :at => [80, 150]
+          text_box "Pick-up:", :at => [257, 150]
+          text_box "Customer:", :at => [80,85]
+          text_box "Order details:", :at => [80,40]
+          text_box "Delivery option:", :at => [435,85]
+          text_box "Transport provider:", :at => [435,40]
+        end
+
+        font_size(10) do
+          text_box "#{seller.seller_name}", :at => [125, 205]
+          text_box "#{seller.seller_address1}", :at => [125,190]
+          text_box "#{seller.seller_phone}", :at => [125, 175]
+
+          text_box "#{label.buyer_name}", :at => [125, 85]
+          text_box "Phone: #{label.buyer_phone}", :at => [125, 73]
+          text_box "Email: #{label.buyer_email}", :at => [125, 61]
+
+          text_box "Parcel size: up to L50 cm x W50 cm x H50 cm", :at => [125,30]
+          text_box "Parcel weight: #{label.parcel_weight}", :at => [125,15]
+          text_box "Parcel content: #{label.parcel_content}", :at => [257,15]
+
+          text_box "#{label.delivery_option}", :at => [445,70]
+          text_box "#{label.transport_provider}", :at => [445,25]
+        end
+
+
+        text_box "#{pickup_from.company}", :at => [130, 135], :width => 120
+        text_box "address", :at => [130, 120], :size => 10, :width => 120
+        text_box "#{pickup_to.company}", :at => [307, 135], :width => 120
+        text_box "address", :at => [307, 120], :size => 10, :width => 120
+
       end
+
+      #dash(1, :space => 1, :phase => 0)
+      #stroke_color "818181"
+      #stroke_horizontal_line -80, 600, :at => 440
+
     end.render
 
   end

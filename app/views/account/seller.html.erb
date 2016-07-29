@@ -129,6 +129,10 @@
                              <%= Pickup.find_by(id: order.store_id).company %>
                             </p>
 
+                            <strong>Pin code:</strong>
+                             <%= order.pincode %>
+                            </p>
+
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
