@@ -29,11 +29,12 @@ class AccountController < OrdersController
     @order.seller_id = current_seller.id
     @order.delivery_status = "processing"
     respond_to do |format|
-      if @order.save
+      
+     if @order.save 
         format.html { redirect_to account_path, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
-        format.html { render :new }
+        format.html { redirect_to account_path, alert: 'Error' }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
