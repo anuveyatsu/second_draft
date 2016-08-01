@@ -35,12 +35,17 @@
     </div> -->
     </div>
     <div class="row" style="padding-bottom:40px" id="step2">
-
-        <%= f.input :buyer_name, placeholder: "Name", label: "Enter customer's details:" %>
-
-        <%= f.input :buyer_phone, placeholder: "Phone", label: false %>
-
-        <%= f.input :buyer_email, as: :email, placeholder: "Email", label: false %>
+        <h4>Enter customer's details:</h4>
+        <%= f.input :buyer_name, placeholder: "Name", label: false,
+        :input_html => {style: "width:250px;margin:auto", id: "buyer_name"} %>
+        <div class="input-group" style="width:250px;margin:auto">
+          <span class="input-group-addon" id="basic-addon1">+7</span>
+          <%= f.input :buyer_phone, placeholder: "Phone", label: false,
+              :input_html => { id: "buyer_phone",
+              class: "form-control", aria: {describedby: "basic-addon1"}} %>
+        </div><p>
+        <%= f.input :buyer_email, as: :email, placeholder: "Email", label: false,
+        :input_html => {style: "width:250px;margin:auto", id: "buyer_email"} %>
     </div>
 
     <div class="row" style="padding-bottom:40px" id="step3">
@@ -53,17 +58,24 @@
             input_html: { class: 'selectTrasnportProvider' },
             wrapper_html: { id: 'selectTrasnportProviderDiv' } %>
 
-        <%= f.input :parcel_weight, placeholder: "Weight", label: "Parcel details:" %>
 
-        <%= f.input :parcel_content, placeholder: "Content", label: false %>
+        <%= f.input :parcel_weight, placeholder: "Weight in kilograms (max 10)", label: 'Parcel details:',
+        :input_html => {style: "width:250px;margin:auto", id: "weight", type: "number"} %>
+
+        <%= f.input :parcel_content, placeholder: "Content", label: false,
+        :input_html => {style: "width:250px;margin:auto", id: "content"} %>
     </div>
 
     <div class="row" style="padding-bottom:40px" id="step4">
       <h4>You are almost there!</h4>
       <h6>This order will cost you:</h6>
-      <h6 id="price"></h6>
+      <h4 id="price"></h4>
     </div>
 
+<<<<<<< HEAD
     <%= f.button :submit, class: "btn btn-primary", id: "createButton" %>
     
+=======
+    <%= f.button :submit, "Submit order", class: "btn btn-primary", id: "createButton" %>
+>>>>>>> 62e8fb256c7e3717ea38c68ff23baeacb324a645
 <% end %>
