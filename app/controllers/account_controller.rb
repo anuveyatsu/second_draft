@@ -29,11 +29,12 @@ class AccountController < OrdersController
     @order.seller_id = current_seller.id
     @order.delivery_status = "processing"
     respond_to do |format|
-      if @order.save
+      
+     if @order.save 
         format.html { redirect_to account_path, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
-        format.html { render :new }
+        format.html { redirect_to account_path, alert: 'Error' }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
@@ -111,7 +112,7 @@ class AccountController < OrdersController
   def generate_pdf(label)
     seller = Seller.find_by(id: label.seller_id)
     pickup_from = Pickup.find_by(id: label.from)
-    pickup_to = Pickup.find_by(id: label.store_id)
+    pickup_to = Pickup.find_by(id: label.pickup_id)
     Prawn::Document.new do
       #stroke_axis
       bounding_box([0, 700], :width => 540, :height => 220) do
@@ -188,6 +189,6 @@ class AccountController < OrdersController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:from, :store_id, :buyer_name, :buyer_phone, :buyer_email, :delivery_option, :transport_provider, :parcel_size_L, :parcel_size_W, :parcel_size_H, :parcel_weight, :parcel_content)
+      params.require(:order).permit(:from, :pickup_id, :buyer_name, :buyer_phone, :buyer_email, :delivery_option, :transport_provider, :parcel_size_L, :parcel_size_W, :parcel_size_H, :parcel_weight, :parcel_content)
     end
 end

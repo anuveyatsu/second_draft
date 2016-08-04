@@ -62,7 +62,7 @@
               <tr>
                 <td><%= order.id %></td>
                 <td><%= Pickup.find_by(id: order.from).company %></td>
-                <td><%= Pickup.find_by(id: order.store_id).company %></td>
+                <td><%= Pickup.find_by(id: order.pickup_id).company %></td>
                 <td><%= order.delivery_status %></td>
                 <td>
                   <%= content_tag :button, class: "btn btn-primary", 'data-toggle' => "modal", 'data-target' => "##{order.id}" do %>
@@ -126,7 +126,7 @@
 
                             <p>
                             <strong>Pick-up:</strong>
-                             <%= Pickup.find_by(id: order.store_id).company %>
+                             <%= Pickup.find_by(id: order.pickup_id).company %>
                             </p>
 
                             <strong>Pin code:</strong>

@@ -29,11 +29,11 @@ class OrdersController < ApplicationController
       @order.seller_id = current_seller.id
       @order.pincode = rand(10000..99999)
       respond_to do |format|
-        if @order.save
+      if @order.save
           format.html { redirect_to account_path, notice: 'Order was successfully created.' }
           format.json { render :show, status: :created, location: @order }
         else
-          format.html { render :new }
+          format.html { redirect_to account_path, alert: 'Error'}
           format.json { render json: @order.errors, status: :unprocessable_entity }
         end
       end
@@ -53,6 +53,7 @@ class OrdersController < ApplicationController
       end
     end
 
+
     # DELETE /orders/1
     # DELETE /orders/1.json
     def destroy
@@ -71,7 +72,8 @@ class OrdersController < ApplicationController
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def order_params
-        params.require(:order).permit(:from, :store_id, :buyer_name, :buyer_phone, :buyer_email, :delivery_option, :transport_provider, :parcel_size_L, :parcel_size_W, :parcel_size_H, :parcel_weight, :parcel_content)
+        params.require(:order).permit(:from, :pickup_id, :buyer_name, :buyer_phone, :buyer_email, :delivery_option, :transport_provider, :parcel_weight, :parcel_content)
+
       end
 
 end

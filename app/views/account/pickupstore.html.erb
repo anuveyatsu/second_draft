@@ -10,7 +10,7 @@
               </div>
               <div id="collapse1" class="panel-collapse collapse in">
                 <div class="panel-body">
-                  <p>Welcome <%= current_pickup.first_name %>
+                  <p>Welcome 
                   <p><%= current_pickup.email %>
                   <p><%= current_pickup.company %>
                 </div>
@@ -66,7 +66,7 @@
                           <% end %>
                         </td>
                       </tr>
-                  <% elsif order.store_id == current_pickup.id && order.delivery_status == "in_transit" %>
+                  <% elsif order.pickup_id == current_pickup.id && order.delivery_status == "in_transit" %>
                       <tr class="text-center warning">
                         <td><%= order.id %></td>
                         <td><%= Seller.find_by(id: order.seller_id).seller_name %></td>
@@ -112,7 +112,7 @@
                           <% end %>
                         </td>
                       </tr>
-                    <% elsif order.store_id == current_pickup.id && order.delivery_status == "ready_for_collection" %>
+                    <% elsif order.pickup_id == current_pickup.id && order.delivery_status == "ready_for_collection" %>
                       <tr class="text-center success">
                         <td><%= order.id %></td>
                         <td><input name="pin" placeholder="Pincode" onchange="bindvalue(this)" style="width:80%"></input></td>
@@ -141,7 +141,7 @@
             <div class="list-group">
               <% if order.from == current_pickup.id && order.delivery_status == 'in_transit' %>
                 <button type="button" class="list-group-item"><%= order.id %> from <%= Seller.find_by(id: order.seller_id).seller_name %></button>
-              <% elsif order.store_id == current_pickup.id && order.delivery_status == 'completed' %>
+              <% elsif order.pickup_id == current_pickup.id && order.delivery_status == 'completed' %>
                 <button type="button" class="list-group-item"><%= order.id %> from <%= Seller.find_by(id: order.seller_id).seller_name %></button>
               <% end %>
             </div>
