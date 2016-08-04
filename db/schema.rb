@@ -76,12 +76,12 @@ ActiveRecord::Schema.define(version: 20160804155523) do
     t.string   "buyer_email"
     t.string   "delivery_option"
     t.string   "transport_provider"
-    t.string   "delivery_status",    default: "processing"
+    t.string   "delivery_status"
     t.string   "parcel_weight"
     t.string   "parcel_content"
     t.integer  "seller_id"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "pincode"
     t.integer  "pickup_id"
   end
