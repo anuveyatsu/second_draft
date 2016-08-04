@@ -15,7 +15,7 @@
     <% @orders.each do |order| %>
       <tr>
         <td><%= Pickup.find_by(id: order.from).company %></td>
-        <td><%= Pickup.find_by(id: order.store_id).company %></td>
+        <td><%= Pickup.find_by(id: order.pickup_id).company %></td>
         <td><%= order.delivery_option %></td>
         <td><%= order.transport_provider %></td>
         <td><%= order.parcel_content %></td>
@@ -80,7 +80,7 @@
 
                     <p>
                     <strong>Pick-up:</strong>
-                     <%= Pickup.find_by(id: order.store_id).company %>
+                     <%= Pickup.find_by(id: order.pickup_id).company %>
                     </p>
                   </div>
                   <div class="modal-footer">

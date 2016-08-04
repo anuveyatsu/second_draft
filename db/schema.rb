@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727070141) do
+ActiveRecord::Schema.define(version: 20160804155523) do
 
   create_table "buyer_legal_details", force: :cascade do |t|
     t.string   "b_legal_name"
@@ -76,23 +76,34 @@ ActiveRecord::Schema.define(version: 20160727070141) do
     t.string   "buyer_email"
     t.string   "delivery_option"
     t.string   "transport_provider"
-    t.string   "delivery_status"
-    t.string   "parcel_size_L"
-    t.string   "parcel_size_W"
-    t.string   "parcel_size_H"
+    t.string   "delivery_status",    default: "processing"
     t.string   "parcel_weight"
     t.string   "parcel_content"
     t.integer  "seller_id"
-    t.integer  "store_id"
-    t.integer  "warehouse_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "pincode"
+    t.integer  "pickup_id"
   end
 
+  add_index "orders", ["pickup_id"], name: "index_orders_on_pickup_id"
   add_index "orders", ["seller_id"], name: "index_orders_on_seller_id"
-  add_index "orders", ["store_id"], name: "index_orders_on_store_id"
-  add_index "orders", ["warehouse_id"], name: "index_orders_on_warehouse_id"
+
+  create_table "pickup_legal_details", force: :cascade do |t|
+    t.string   "pickup_legal_name"
+    t.string   "pickup_legal_BIN"
+    t.string   "pickup_legal_address"
+    t.string   "pickup_legal_bank_name"
+    t.string   "pickup_legal_bank_BIN"
+    t.string   "pickup_legal_SWIFT"
+    t.string   "pickup_legal_bank_account"
+    t.string   "pickup_legal_CEO"
+    t.integer  "pickup_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "pickup_legal_details", ["pickup_id"], name: "index_pickup_legal_details_on_pickup_id"
 
   create_table "pickups", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -107,9 +118,13 @@ ActiveRecord::Schema.define(version: 20160727070141) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "company"
+    t.string   "pickup_business_type"
+    t.string   "pickup_city"
+    t.string   "pickup_country"
+    t.string   "pickup_address"
+    t.string   "pickup_phone"
+    t.string   "pickup_working_hours"
   end
 
   add_index "pickups", ["email"], name: "index_pickups_on_email", unique: true
@@ -158,32 +173,6 @@ ActiveRecord::Schema.define(version: 20160727070141) do
   add_index "sellers", ["confirmation_token"], name: "index_sellers_on_confirmation_token", unique: true
   add_index "sellers", ["email"], name: "index_sellers_on_email", unique: true
   add_index "sellers", ["reset_password_token"], name: "index_sellers_on_reset_password_token", unique: true
-
-  create_table "store_legal_details", force: :cascade do |t|
-    t.string   "st_legal_name"
-    t.string   "store_legal_BIN"
-    t.string   "store_legal_address"
-    t.string   "store_legal_bank_name"
-    t.string   "store_legal_bank_BIN"
-    t.string   "store_legal_SWIFT"
-    t.string   "store_legal_bank_account"
-    t.string   "store_legal_CEO"
-    t.integer  "store_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  add_index "store_legal_details", ["store_id"], name: "index_store_legal_details_on_store_id"
-
-  create_table "stores", force: :cascade do |t|
-    t.string   "store_name"
-    t.string   "store_description"
-    t.string   "store_IDproject"
-    t.string   "store_enabled"
-    t.string   "store_IdUser"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
 
   create_table "subscribers", force: :cascade do |t|
     t.string   "email"
@@ -243,31 +232,5 @@ ActiveRecord::Schema.define(version: 20160727070141) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-  create_table "warehouse_legal_details", force: :cascade do |t|
-    t.string   "w_legal_name"
-    t.string   "w_legal_BIN"
-    t.string   "w_legal_address"
-    t.string   "w_legal_bank_name"
-    t.string   "w_legal_bank_BIN"
-    t.string   "w_legal_SWIFT"
-    t.string   "w_legal_bank_account"
-    t.string   "w_legal_CEO"
-    t.integer  "warehouse_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "warehouse_legal_details", ["warehouse_id"], name: "index_warehouse_legal_details_on_warehouse_id"
-
-  create_table "warehouses", force: :cascade do |t|
-    t.string   "warehouse_name"
-    t.string   "warehouse_location"
-    t.string   "warehouse_manager"
-    t.string   "warehouse_phone"
-    t.string   "warehouse_email"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
 
 end

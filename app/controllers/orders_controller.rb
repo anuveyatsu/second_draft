@@ -53,6 +53,7 @@ class OrdersController < ApplicationController
       end
     end
 
+
     # DELETE /orders/1
     # DELETE /orders/1.json
     def destroy
@@ -71,7 +72,7 @@ class OrdersController < ApplicationController
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def order_params
-        params.require(:order).permit(:from, :store_id, :buyer_name, :buyer_phone, :buyer_email, :delivery_option, :transport_provider, :parcel_size_L, :parcel_size_W, :parcel_size_H, :parcel_weight, :parcel_content)
+        params.require(:order).permit(:from, :pickup_id, :buyer_name, :buyer_phone, :buyer_email, :delivery_option, :transport_provider, :parcel_weight, :parcel_content)
 
       end
 

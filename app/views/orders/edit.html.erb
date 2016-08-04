@@ -10,7 +10,7 @@
             :wrapper_html => { :style => 'display: inline' } %>
       </div>
       <div class="col-sm-6">
-        <%= f.input :store_id, label: 'To:',
+        <%= f.input :pickup_id, label: 'To:',
             :collection => Pickup.all.map {|pickup| ["#{pickup.company} email: #{pickup.email}", pickup.id]},
             selected: Pickup.first.company,
             :wrapper_html => { :style => 'display: inline' } %>
@@ -37,17 +37,7 @@
         <%= f.input :transport_provider, as: :radio_buttons,
             :collection => ['General Logistics', 'I will deliver by myself'] %></div>
     </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <%= f.input :parcel_size_L, placeholder: "Length", label: false %>
-      </div>
-      <div class="col-sm-4">
-        <%= f.input :parcel_size_W, placeholder: "Width", label: false %>
-      </div>
-      <div class="col-sm-4">
-        <%= f.input :parcel_size_H, placeholder: "Height", label: false %>
-      </div>
-    </div>
+    
     <div class="row">
       <div class="col-sm-6">
         <%= f.input :parcel_weight, placeholder: "Weight", label: false %>

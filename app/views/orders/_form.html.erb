@@ -23,7 +23,7 @@
 
           <h4>Pick-up store:</h4>
 
-        <%= f.input :store_id, label: false,
+        <%= f.input :pickup_id, label: false,
             :collection => Pickup.all.map {|pickup| ["#{pickup.company}", pickup.id]},
             as: :radio_buttons, input_html: { class: 'selectPickUp' },
             wrapper_html: { id: 'selectPickUpDiv' } %>
