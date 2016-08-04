@@ -62,6 +62,11 @@ class AccountController < OrdersController
   end
 
   def pickupstore
+    #@pickupstore = Pickup.find(current_pickup.id)
+    #@pickupstore = Pickup.find(current_pickup.id)
+    #company = params[:pickupstore][:company]
+    #@pickupstore.company = company
+    #@pickupstore.save
   end
 
   def receive

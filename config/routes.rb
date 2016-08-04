@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'account/download_pdf'
 
   devise_for :sellers
-  devise_for :pickups
+  devise_for :pickups, controllers: { registrations: 'pickups/registrations'}
 
   root 'welcome#index'
 

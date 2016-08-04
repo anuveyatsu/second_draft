@@ -10,6 +10,8 @@
           <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %>
         <%= f.input :password_confirmation, autocomplete: "off", label: false, placeholder: "Confirm password", input_html: { class: "list-group-item" } %>
+
+        <%= f.input :company, label: false, placeholder: "Store name", input_html: { class: "list-group-item" } %>
         <%= f.button :submit, "Sign up", :class => "list-group-item btn-block active" %>
       <% end %>
 
