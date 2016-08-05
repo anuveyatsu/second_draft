@@ -32,7 +32,7 @@
         <br><a class="btn btn-default btn-lg landing" href="#contact">Get in Touch</a>
       </div>
       <div class="col-sm-4">
-        <span class="glyphicon glyphicon-signal logo"></span>
+        <span class="glyphicon glyphicon-bookmark logo"></span>
       </div>
     </div>
   </div>
@@ -101,21 +101,27 @@
     <div class="row text-center slideanim">
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="#" alt="Dostyk Plaza" width="400" height="300">
+          <%= image_tag("dostykplaza.png", size: "400x300", alt: "Dostyk Plaza",
+          onmouseover: "colorfull(this)", onmouseout: "colorless(this)",
+          style: "-webkit-filter: grayscale(100%); filter: grayscale(100%);") %>
           <p><strong>Dostyk Plaza</strong></p>
           <p>Our location at the most popular shopping mall</p>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="#" alt="Magnum" width="400" height="300">
+          <%= image_tag("magnum.png", size: "400x300", alt: "Magnum",
+          onmouseover: "colorfull(this)", onmouseout: "colorless(this)",
+          style: "-webkit-filter: grayscale(100%); filter: grayscale(100%);") %>
           <p><strong>Magnum</strong></p>
           <p>Pick-up your parcel while at your favourite grocery</p>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="#" alt="Super Market" width="400" height="300">
+          <%= image_tag("supermarket.png", size: "400x300", alt: "Supermarket",
+          onmouseover: "colorfull(this)", onmouseout: "colorless(this)",
+          style: "-webkit-filter: grayscale(100%); filter: grayscale(100%);") %>
           <p><strong>Super Market</strong></p>
           <p>We are at your neighourhood</p>
         </div>
@@ -246,25 +252,226 @@
     </div>
   </div>
 
+  <!-- Image effects -->
+  <script>
+    function colorless(x) {
+      x.style.filter = "grayscale(100%)";
+      x.style.WebkitFilter = "grayscale(100%)";
+    }
+    function colorfull(x) {
+      x.style.filter = "none";
+      x.style.WebkitFilter = "none";
+    }
+  </script>
   <!-- Add Google Maps -->
   <script>
   function initialize() {
-  var myCenter = new google.maps.LatLng(43.243200, 76.953443);
-  var mapProp = {
-    center:myCenter,
-    zoom:12,
-    scrollwheel:false,
-    draggable:false,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
-    };
+    var myCenter = new google.maps.LatLng(43.239079, 76.898538);
+    var mapProp = {
+      center:myCenter,
+      zoom:12,
+      scrollwheel:false,
+      draggable:false,
+      mapTypeId:google.maps.MapTypeId.ROADMAP,
+      styles:
+      [
+          {
+              "featureType": "all",
+              "elementType": "labels.text.fill",
+              "stylers": [
+                  {
+                      "saturation": 36
+                  },
+                  {
+                      "color": "#000000"
+                  },
+                  {
+                      "lightness": 40
+                  }
+              ]
+          },
+          {
+              "featureType": "all",
+              "elementType": "labels.text.stroke",
+              "stylers": [
+                  {
+                      "visibility": "on"
+                  },
+                  {
+                      "color": "#000000"
+                  },
+                  {
+                      "lightness": 16
+                  }
+              ]
+          },
+          {
+              "featureType": "all",
+              "elementType": "labels.icon",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "administrative",
+              "elementType": "geometry.fill",
+              "stylers": [
+                  {
+                      "color": "#000000"
+                  },
+                  {
+                      "lightness": 20
+                  }
+              ]
+          },
+          {
+              "featureType": "administrative",
+              "elementType": "geometry.stroke",
+              "stylers": [
+                  {
+                      "color": "#000000"
+                  },
+                  {
+                      "lightness": 17
+                  },
+                  {
+                      "weight": 1.2
+                  }
+              ]
+          },
+          {
+              "featureType": "landscape",
+              "elementType": "geometry",
+              "stylers": [
+                  {
+                      "color": "#000000"
+                  },
+                  {
+                      "lightness": 20
+                  }
+              ]
+          },
+          {
+              "featureType": "poi",
+              "elementType": "geometry",
+              "stylers": [
+                  {
+                      "color": "#000000"
+                  },
+                  {
+                      "lightness": 21
+                  }
+              ]
+          },
+          {
+              "featureType": "road.highway",
+              "elementType": "geometry.fill",
+              "stylers": [
+                  {
+                      "color": "#000000"
+                  },
+                  {
+                      "lightness": 17
+                  }
+              ]
+          },
+          {
+              "featureType": "road.highway",
+              "elementType": "geometry.stroke",
+              "stylers": [
+                  {
+                      "color": "#000000"
+                  },
+                  {
+                      "lightness": 29
+                  },
+                  {
+                      "weight": 0.2
+                  }
+              ]
+          },
+          {
+              "featureType": "road.arterial",
+              "elementType": "geometry",
+              "stylers": [
+                  {
+                      "color": "#000000"
+                  },
+                  {
+                      "lightness": 18
+                  }
+              ]
+          },
+          {
+              "featureType": "road.local",
+              "elementType": "geometry",
+              "stylers": [
+                  {
+                      "color": "#000000"
+                  },
+                  {
+                      "lightness": 16
+                  }
+              ]
+          },
+          {
+              "featureType": "transit",
+              "elementType": "geometry",
+              "stylers": [
+                  {
+                      "color": "#000000"
+                  },
+                  {
+                      "lightness": 19
+                  }
+              ]
+          },
+          {
+              "featureType": "water",
+              "elementType": "geometry",
+              "stylers": [
+                  {
+                      "color": "#000000"
+                  },
+                  {
+                      "lightness": 17
+                  }
+              ]
+          }
+      ]
+      };
 
-  var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var storeLocations = [
+      ["Dostyk Plaza", 43.233539, 76.957034],
+      ["Mega Center", 43.202411, 76.892582],
+      ["Royal Petrol", 43.227796, 76.960678],
+      ["Super Market", 43.248880, 76.943008],
+      ["Magnum", 43.217882, 76.842853],
+      ["Bekker", 43.234105, 76.889586],
+      ["Promenade", 43.240487, 76.924873]
+    ];
 
-  var marker = new google.maps.Marker({
-    position:myCenter,
-    });
+    var infowindow = new google.maps.InfoWindow();
+    var marker, i;
+    var markers = [];
+    for (i = 0; i < storeLocations.length; i++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(storeLocations[i][1], storeLocations[i][2]),
+        map: map
+      });
+      markers.push(marker);
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(storeLocations[i][0]);
+          infowindow.open(map, marker);
+          map.setZoom(13);
+        }
+      })(marker, i));
+    }
 
-  marker.setMap(map);
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
