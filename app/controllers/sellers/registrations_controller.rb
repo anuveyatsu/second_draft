@@ -1,5 +1,5 @@
-class Pickups::RegistrationsController < Devise::RegistrationsController
-before_action :configure_sign_up_params, only: [:create]
+class Sellers::RegistrationsController < Devise::RegistrationsController
+ before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -40,7 +40,7 @@ before_action :configure_sign_up_params, only: [:create]
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:company, :pickup_business_type, :pickup_phone, :pickup_working_hours, :pickup_address, :pickup_city, :pickup_country])
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:seller_name, :seller_rep_name, :seller_phone, :seller_address1])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
